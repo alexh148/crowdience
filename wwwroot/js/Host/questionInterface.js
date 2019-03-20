@@ -5,9 +5,9 @@ var counter = 0
 var questions = localStorage.getItem("questions");
 var questions = JSON.parse(questions);
 
+// Broken!!
 $( "#nextQuestion" ).click(function(event) {
     event.preventDefault()
-    console.log("Next question clicked");
     localStorage.setItem("answerOneVotes", document.getElementById("answerOneCounter").innerHTML);
     localStorage.setItem("answerTwoVotes", document.getElementById("answerTwoCounter").innerHTML);
 

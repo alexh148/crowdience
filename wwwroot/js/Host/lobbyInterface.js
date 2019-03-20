@@ -2,6 +2,10 @@
 console.log(localStorage.getItem("questions"))
 var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
 
+connection.start().catch(function(err) {
+  return console.error(err.toString());
+});
+
 connection.on("ReceiveUser", function(user) {
     var joinedUser = user + " joined the game!";
     var ulUsers = document.getElementById("joinedUsers");
@@ -26,7 +30,4 @@ $( "#start" ).click(function(event) {
 
 })
 
-connection.start().catch(function(err) {
-  return console.error(err.toString());
-});
 

@@ -93,14 +93,10 @@ connection.on("ReceiveMessage", function (
 function addData(myChart) {
   console.log("Add Data Called");
   myChart.data.datasets[0].data = [
-    // document.getElementById("responseHimCounter").innerHTML,
-    // document.getElementById("responseHerCounter").innerHTML
     document.getElementById("answerOneCounter").innerHTML,
     document.getElementById("answerTwoCounter").innerHTML
   ];
   myChart.update();
-  console.log(localStorage.getItem("q1"))
-  console.log(localStorage.getItem("q10"))
 }
 
 connection.start().catch(function (err) {
@@ -110,9 +106,5 @@ connection.start().catch(function (err) {
 connection.on("ReceiveCoupleVote", function (couple, message, myResponseId, myResponseVal) {
   localStorage.setItem(`couplename${coupleCounter}`, couple)
   localStorage.setItem(`myResponseId${coupleCounter}`, myResponseVal)
-  console.log(localStorage.getItem(`couplename${coupleCounter}`))
-  console.log(localStorage.getItem(`myResponseId${coupleCounter}`))
-  console.log(coupleCounter);
-
   coupleCounter++;
 })
