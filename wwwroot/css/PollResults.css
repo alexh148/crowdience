@@ -19,18 +19,20 @@ body {
 }
 
 #answerOneCounter,
-#answerTwoCounter {
+#answerTwoCounter, 
+#answerOneFinalCounter,
+#answerTwoFinalCounter {
   font-size: 250%;
   padding: 15px;
   border-radius: 25%;
 }
 
-#answerOneCounter {
+#answerOneCounter, #answerOneFinalCounter {
   border: 3px solid #1a4791;
   background-color: #3e95cd;
 }
 
-#answerTwoCounter {
+#answerTwoCounter, #answerTwoFinalCounter {
   border: 3px solid #400b4c;
   background-color: #8e5ea2;
 }
@@ -42,4 +44,27 @@ body {
 #buttonDiv {
   text-align: center;
   font-size: 150%;
+}
+
+#bandg, #groom, #bride, #groomVote, #brideVote, #rightorwrong {
+  text-align: center;
+}
+
+#bandg {
+  font-size: 200%;
+  margin-top: 10px;
+}
+
+#groom, #bride {
+  font-size: 150%;
+  text-decoration: underline;
+}
+
+#groomVote, #brideVote {
+  font-size: 150%;
+  margin: 20px;
+}
+
+#rightorwrong {
+  font-size: 300%;
 }

@@ -8,8 +8,12 @@ var questions = JSON.parse(questions);
 $( "#nextQuestion" ).click(function(event) {
     event.preventDefault()
     console.log("Next question clicked");
+    localStorage.setItem("answerOneVotes", document.getElementById("answerOneCounter").innerHTML);
+    localStorage.setItem("answerTwoVotes", document.getElementById("answerTwoCounter").innerHTML);
 
     
+    $(location).attr('href', '/Host/EndOfRound')
+
     connection.invoke("SendQuestion", questions[counter]).catch(function (err) {
         return console.error(err.toString());
     });

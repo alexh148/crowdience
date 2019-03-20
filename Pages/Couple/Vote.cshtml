@@ -1,2 +1,37 @@
 @page
-<h1>heloah</h1>
+<div class="container">
+  <div class="row">
+    <!-- <div class="col-6">
+      User: <input type="text" id="userInput" />
+    </div> -->
+    <div class="col-6">&nbsp;</div>
+  </div>
+  <div class="row">
+    <h1 id="questionTitle">Question Title</h1>
+  <div class="row">
+    <div class="col-12">
+      <input type="radio" name="myResponse" id="groom" value="He Did" />
+      <label for="answerOne">Answer One!</label>
+      <br />
+      <input type="radio" name="myResponse" id="bride" value="She Did" />
+      <label for="answerTwo">Answer Two!</label>
+
+      <div id="bar-chart-horizontal" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <input type="button" id="sendButton" value="Vote Now" />
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ul id="messagesListChanged" />
+    </div>
+  </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/Couple/voteInterface.js"></script>

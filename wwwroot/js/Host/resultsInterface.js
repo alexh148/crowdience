@@ -1,6 +1,7 @@
 "use strict";
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
+var coupleCounter = 1;
 
 Chart.defaults.global.defaultFontColor = "white";
 var ctx = document.getElementById("bar-chart-horizontal");
@@ -9,45 +10,41 @@ var myChart = new Chart(ctx, {
   type: "horizontalBar",
   data: {
     labels: ["Him", "Her"],
-    datasets: [
-      {
-        backgroundColor: ["#3e95cd", "#8e5ea2"],
-        data: [0, 0]
-      }
-    ]
+    datasets: [{
+      backgroundColor: ["#3e95cd", "#8e5ea2"],
+      data: [0, 0]
+    }]
   },
   options: {
-    legend: { display: false },
+    legend: {
+      display: false
+    },
     title: {
       display: true,
       scaleStartValue: 0
     },
     scales: {
-      xAxes: [
-        {
-          gridLines: {
-            color: "#262626"
-          },
-          stacked: true,
-          ticks: {
-            min: 0 // minimum value
-          }
+      xAxes: [{
+        gridLines: {
+          color: "#262626"
+        },
+        stacked: true,
+        ticks: {
+          min: 0 // minimum value
         }
-      ],
-      yAxes: [
-        {
-          categoryPercentage: 1.0,
-          barPercentage: 1.0,
-          gridLines: {
-            color: "#262626"
-          }
+      }],
+      yAxes: [{
+        categoryPercentage: 1.0,
+        barPercentage: 1.0,
+        gridLines: {
+          color: "#262626"
         }
-      ]
+      }]
     }
   }
 });
 
-connection.on("ReceiveQuestion", function(question) {
+connection.on("ReceiveQuestion", function (question) {
   console.log(question);
   document.getElementById("questionTitle").innerHTML = question;
   document.getElementById("answerOneCounter").innerHTML = 0;
@@ -56,7 +53,7 @@ connection.on("ReceiveQuestion", function(question) {
   addData(myChart);
 });
 
-connection.on("ReceiveMessage", function(
+connection.on("ReceiveMessage", function (
   user,
   message,
   myResponseId,
@@ -84,7 +81,7 @@ connection.on("ReceiveMessage", function(
   // append to end
   // document.getElementById("messagesList").appendChild(liPollResult);
 
- 
+
   // Increment Counter
   console.log(myResponseId + "Counter")
   var counter = document.getElementById(myResponseId + "Counter").innerHTML;
@@ -94,7 +91,7 @@ connection.on("ReceiveMessage", function(
 });
 
 function addData(myChart) {
-    console.log("Add Data Called");
+  console.log("Add Data Called");
   myChart.data.datasets[0].data = [
     // document.getElementById("responseHimCounter").innerHTML,
     // document.getElementById("responseHerCounter").innerHTML
@@ -106,6 +103,16 @@ function addData(myChart) {
   console.log(localStorage.getItem("q10"))
 }
 
-connection.start().catch(function(err) {
+connection.start().catch(function (err) {
   return console.error(err.toString());
 });
+
+connection.on("ReceiveCoupleVote", function (couple, message, myResponseId, myResponseVal) {
+  localStorage.setItem(`couplename${coupleCounter}`, couple)
+  localStorage.setItem(`myResponseId${coupleCounter}`, myResponseVal)
+  console.log(localStorage.getItem(`couplename${coupleCounter}`))
+  console.log(localStorage.getItem(`myResponseId${coupleCounter}`))
+  console.log(coupleCounter);
+
+  coupleCounter++;
+})
