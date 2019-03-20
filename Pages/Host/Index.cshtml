@@ -1,0 +1,158 @@
+﻿@page
+<div class="container">
+  <div class="row">&nbsp;</div>
+  <button id="custom">Custom Game</button>
+  <button id="preset">Preset Game</button>
+
+  <form>
+    <fieldset class="form-group">
+      <div class="form-group">
+        <label for="nrQ">Number of Questions:</label>
+        <select class="form-control" id="nrQ">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+        </select>
+      </div>
+      <fieldset class="form-group">
+        <legend>Select Two Play Icons</legend>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" value="">
+              Mr
+            </input>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" value="">
+              Mrs
+            </input>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" value="">
+              A
+            </input>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" value="">
+              B
+            </input>
+          </label>
+        </div>
+      </fieldset>
+      <div class="form-group">
+        <label for="q1">Question 1:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="q1"
+          placeholder="Question 1"
+        />
+      </div>
+      <div class="form-group">
+        <label for="q2">Question 2:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="q2"
+          placeholder="Question 2"
+        />
+      </div>
+      <div class="form-group">
+        <label for="q3">Question 3:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="q3"
+          placeholder="Question 3"
+        />
+      </div>
+      <div class="form-group">
+        <label for="q4">Question 4:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="q4"
+          placeholder="Question 4"
+        />
+      </div>
+      <div class="form-group">
+        <label for="q5">Question 5:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="q5"
+          placeholder="Question 5"
+        />
+      </div>
+      <div class="form-group">
+        <label for="q6">Question 6:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="q6"
+          placeholder="Question 6"
+        />
+      </div>
+      <div class="form-group">
+        <label for="q7">Question 7:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="q7"
+          placeholder="Question 7"
+        />
+      </div>
+      <div class="form-group">
+        <label for="q8">Question 8:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="q8"
+          placeholder="Question 8"
+        />
+      </div>
+      <div class="form-group">
+        <label for="q9">Question 9:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="q9"
+          placeholder="Question 9"
+        />
+      </div>
+      <div class="form-group">
+        <label for="q10">Question 10:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="q10"
+          placeholder="Question 10"
+        />
+      </div>
+      
+      <button type="submit" class="btn btn-primary" id="create">
+        Create Game
+      </button>
+    </fieldset>
+  </form>
+  <p>
+    Chat here or go to the <a asp-page="/poll">Poll</a> to vote
+  </p>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/Host/indexInterface.js"></script>

@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Bangers|Carter+One|Dancing+Script|Indie+Flower|Over+the+Rainbow");
+
+body {
+  font-family: "Bangers", cursive;
+  color: white;
+  background-color: #262626;
+}
+
+#questionTitle {
+  font-size: 350%;
+  text-align: center;
+  margin: 20px;
+}
+
+#answerOne,
+#answerTwo {
+  text-align: right;
+  font-size: 150%;
+}
+
+#answerOneCounter,
+#answerTwoCounter {
+  font-size: 250%;
+  padding: 15px;
+  border-radius: 25%;
+}
+
+#answerOneCounter {
+  border: 3px solid #1a4791;
+  background-color: #3e95cd;
+}
+
+#answerTwoCounter {
+  border: 3px solid #400b4c;
+  background-color: #8e5ea2;
+}
+#messagesList {
+  max-height: 85vh;
+  overflow: hidden;
+}
+
+#buttonDiv {
+  text-align: center;
+  font-size: 150%;
+}
