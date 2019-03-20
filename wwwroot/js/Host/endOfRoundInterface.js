@@ -13,15 +13,14 @@ $(document).ready(function () {
     console.log(answerTwoVotes);
     document.getElementById("answerOneFinalCounter").innerHTML = answerOneVotes
     document.getElementById("answerTwoFinalCounter").innerHTML = answerTwoVotes;
-    var groomName = localStorage.getItem("groomname");
-    var groomVote = localStorage.getItem("groom");
-    var brideName = localStorage.getItem("bridename");
-    var brideVote = localStorage.getItem("bride");
-    document.getElementById("groom").innherHTML = groomName;
-    document.getElementById("groomVote").innherHTML = groomVote;
-    document.getElementById("bride").innherHTML = brideName;
-    document.getElementById("brideVote").innherHTML = brideVote;
-
+    var groomName = localStorage.getItem("couplename1")
+    var groomVote = localStorage.getItem("myResponseId1");
+    var brideName = localStorage.getItem("couplename2");
+    var brideVote = localStorage.getItem("myResponseId2");
+    document.getElementById("groom").innerHTML = groomName;
+    document.getElementById("groomVote").innerHTML = groomVote;
+    document.getElementById("bride").innerHTML = brideName;
+    document.getElementById("brideVote").innerHTML = brideVote;
 
     // Chart
     Chart.defaults.global.defaultFontColor = "white";
