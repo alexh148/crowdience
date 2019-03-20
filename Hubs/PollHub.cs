@@ -5,6 +5,11 @@ namespace crowdience.Hubs
 {
     public class PollHub : Hub
     {
+        public async Task SendCouple(string user)
+        {
+            await Clients.All.SendAsync("ReceiveCouple", user);
+        }
+        
         public async Task SendUser(string user)
         {
             await Clients.All.SendAsync("ReceiveUser", user);
