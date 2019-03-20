@@ -8,20 +8,22 @@ connection.on("ReceiveUser", function(user) {
     var liUser = document.createElement("li");
     liUser.textContent = joinedUser;
     
-  
-    // append to top
     ulUsers.insertBefore(liUser, ulUsers.childNodes[0]);
+  });
+
+connection.on("ReceiveCouple", function(user) {
+    var joinedCouple = user + " joined the game!";
+    var ulCouple = document.getElementById("joinedCouple");
+    var liCouple = document.createElement("li");
+    liCouple.textContent = joinedCouple;
+    
+    ulCouple.insertBefore(liCouple, ulCouple.childNodes[0]);
   });
 
 $( "#start" ).click(function(event) {
   event.preventDefault()
   $(location).attr('href', '/Host/Results')
 
-//   var question = localStorage.getItem("questions");
-//   console.log(question)
-//   connection.invoke("SendQuestion", question).catch(function (err) {
-//     return console.error(err.toString());
-// });
 })
 
 connection.start().catch(function(err) {
