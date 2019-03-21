@@ -36,8 +36,7 @@ namespace Crowndience.Controllers
             return game;
         }
 
-
-        // POST: api/Todo
+    
         [HttpPost]
         public async Task<ActionResult<Game>> SaveGame(Game item)
         {
@@ -46,5 +45,6 @@ namespace Crowndience.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = item.Id}, item);
         }
+        
     }
 }
