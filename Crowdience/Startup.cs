@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using crowdience.Hubs;
+using Crowdience.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace crowdience
 {
@@ -36,6 +38,9 @@ namespace crowdience
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSignalR();
+
+            services.AddDbContext<GameContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
