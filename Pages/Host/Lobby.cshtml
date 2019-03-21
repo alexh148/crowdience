@@ -1,11 +1,14 @@
 @page
+@model LobbyModel
 <div>
     <div id="lobbyInfo">
-    <h1>Lobby:</h1>
+    <h1>@ViewData["LobbyTitle"]:</h1>
     <h4>Please Connect to the following address on your mobile device:</h4>
     <h4>https://localhost:5001/Player/Lobby</h4>
     <p>When Ready, click Start:</p>
+    <form method="post">
     <button id="start">Start!</button>
+    </form>
     </div>
     <div id="couple">Couple couple couple joined:
     <ul id="joinedCouple"></ul>

@@ -12,7 +12,7 @@ $( "#nextQuestion" ).click(function(event) {
     localStorage.setItem("answerTwoVotes", document.getElementById("answerTwoCounter").innerHTML);
 
     
-    $(location).attr('href', '/Host/EndOfRound')
+    // $(location).attr('href', '/Host/EndOfRound')
 
     connection.invoke("SendQuestion", questions[counter]).catch(function (err) {
         return console.error(err.toString());

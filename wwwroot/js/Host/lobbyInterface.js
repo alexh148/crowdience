@@ -24,10 +24,10 @@ connection.on("ReceiveCouple", function(user) {
     ulCouple.insertBefore(liCouple, ulCouple.childNodes[0]);
   });
 
-$( "#start" ).click(function(event) {
-  event.preventDefault()
-  $(location).attr('href', '/Host/Results')
+// $( "#start" ).click(function(event) {
+//   event.preventDefault()
+//   $(location).attr('href', '/Host/Results')
 
-})
+// })
 
 

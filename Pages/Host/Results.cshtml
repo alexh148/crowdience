@@ -1,18 +1,23 @@
 @page
+@model ResultsModel
 <body>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-9">
-          <h1 id="questionTitle">
-            Question Title!
+         <h1 id="questionTitle">
+               @ViewData["question"]:
           </h1>
         </div>
         <div class="col-md-3">
+         
           <div id="buttonDiv">
-            <button id="nextQuestion">Next Question!</button>
+            <form method="post">
+            <button id="addDiv">Next Question!</button>
+            </form>
           </div>
+       
         </div>
       </div>
       <div class="row">
