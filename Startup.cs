@@ -66,6 +66,13 @@ namespace crowdience
             app.UseCookiePolicy();
             app.UseStaticFiles();
             app.UseSession();
+            
+
+            app.UseMvc(routes =>
+            {
+            routes.MapRoute("default", "{controller=Question}/{action=Results}/{id?}");
+            });
+            
 
             app.UseSignalR(routes =>
             {
