@@ -9,7 +9,6 @@ document.getElementById("joinGame").addEventListener("click", function (event) {
     
     if (!username) {
         username = "[anonymous]";
-        //need to change so it's a must to be entered
     }
 
     connection.invoke("SendCouple", username).catch(function (err) {

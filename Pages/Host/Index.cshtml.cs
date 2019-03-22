@@ -8,15 +8,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace crowdience.Pages
 {
-    public class HostLobbyModel : PageModel
+    public class HostIndexModel : PageModel
     {
         public void OnGet()
         {
-            ViewData["LobbyTitle"] = "Mega Lobby!";
         }
          public void OnPost()
         {
-            Response.Redirect($"/Host/Results?Round=1");
         }
     }
 }

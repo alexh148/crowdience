@@ -5,18 +5,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Web;
+using System.Diagnostics;
 
 namespace crowdience.Pages
 {
-    public class HostLobbyModel : PageModel
+    public class HostGameOverModel : PageModel
     {
         public void OnGet()
         {
-            ViewData["LobbyTitle"] = "Mega Lobby!";
+        //GetRequestAllResults
+
         }
-         public void OnPost()
+        public void OnPost()
         {
-            Response.Redirect($"/Host/Results?Round=1");
         }
     }
 }

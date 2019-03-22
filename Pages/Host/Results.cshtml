@@ -1,5 +1,5 @@
 @page
-@model ResultsModel
+@model HostResultsModel
 <body>
 <div class="container-fluid">
   <div class="row">
@@ -22,16 +22,16 @@
       </div>
       <div class="row">
         <div class="col-md-3">
-          <p id="answerOne">Answer One!:</p>
+          <p id="answerOne">@ViewData["answerOne"]:</p>
         </div>
         <div class="col-md-3">
-          <p id="answerOneCounterP"><span id="answerOneCounter">0</span></p>
+          <p id="answerOneCounterP"><span id="answerOneCounter" runat="server">@ViewData["answerOneCounter"]</span></p>
         </div>
         <div class="col-md-3">
-          <p id="answerTwo">Answer Two:</p>
+          <p id="answerTwo">@ViewData["answerTwo"]:</p>
         </div>
         <div class="col-md-3">
-          <p id="answerTwoCounterP"><span id="answerTwoCounter">0</span></p>
+          <p id="answerTwoCounterP"><span id="answerTwoCounter" runat="server">@ViewData["answerOneCounter"]</span></p>
         </div>
         
       </div>
