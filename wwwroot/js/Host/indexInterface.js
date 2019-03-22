@@ -1,6 +1,7 @@
 $( "#create" ).click(function(event) {
     event.preventDefault()
     console.log("Hello Saule")
+    // Change to C#, save to DB?
     var qArray = [
         document.getElementById("q1").value,
         document.getElementById("q2").value,
@@ -13,8 +14,6 @@ $( "#create" ).click(function(event) {
         document.getElementById("q9").value,
         document.getElementById("q10").value
     ]
-    console.log(qArray);
     localStorage.setItem("questions", JSON.stringify(qArray));
-    console.log(localStorage.getItem("questions"))
     $(location).attr('href', '/Host/lobby')
 });

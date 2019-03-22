@@ -6,21 +6,25 @@ connection.start().catch(function (err) {
 });
 
 $(document).ready(function () {
-    // Chart variables
-    var answerOneVotes = localStorage.getItem("answerOneVotes");
-    var answerTwoVotes = localStorage.getItem("answerTwoVotes");
-    console.log(answerOneVotes);
-    console.log(answerTwoVotes);
-    document.getElementById("answerOneFinalCounter").innerHTML = answerOneVotes
-    document.getElementById("answerTwoFinalCounter").innerHTML = answerTwoVotes;
-    var groomName = localStorage.getItem("couplename1")
-    var groomVote = localStorage.getItem("myResponseId1");
-    var brideName = localStorage.getItem("couplename2");
-    var brideVote = localStorage.getItem("myResponseId2");
-    document.getElementById("groom").innerHTML = groomName;
-    document.getElementById("groomVote").innerHTML = groomVote;
-    document.getElementById("bride").innerHTML = brideName;
-    document.getElementById("brideVote").innerHTML = brideVote;
+    // Old Way!
+    // var answerOneVotes = localStorage.getItem("answerOneVotes");
+    // var answerTwoVotes = localStorage.getItem("answerTwoVotes");
+    // console.log(answerOneVotes);
+    // console.log(answerTwoVotes);
+    // document.getElementById("answerOneFinalCounter").innerHTML = answerOneVotes
+    // document.getElementById("answerTwoFinalCounter").innerHTML = answerTwoVotes;
+
+    // Old Way!
+    // var answerOneVotes = document.getElementById("answerOneFinalCounter").innerHTML;
+    // var answerTwoVotes = document.getElementById("answerTwoFinalCounter").innerHTML;
+    // var groomName = localStorage.getItem("couplename1")
+    // var groomVote = localStorage.getItem("myResponseId1");
+    // var brideName = localStorage.getItem("couplename2");
+    // var brideVote = localStorage.getItem("myResponseId2");
+    // document.getElementById("groom").innerHTML = groomName;
+    // document.getElementById("groomVote").innerHTML = groomVote;
+    // document.getElementById("bride").innerHTML = brideName;
+    // document.getElementById("brideVote").innerHTML = brideVote;
 
     // Chart
     Chart.defaults.global.defaultFontColor = "white";

@@ -2,6 +2,10 @@
 
 let connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
 
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
+
 document.getElementById("joinGame").addEventListener("click", function (event) {
     event.preventDefault();
     let username = document.getElementById("username").value;
@@ -18,7 +22,5 @@ document.getElementById("joinGame").addEventListener("click", function (event) {
     $(location).attr('href', '/Player/Vote')
 });
 
-connection.start().catch(function (err) {
-    return console.error(err.toString());
-});
+
 

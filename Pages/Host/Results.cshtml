@@ -1,32 +1,37 @@
 @page
+@model HostResultsModel
 <body>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-9">
-          <h1 id="questionTitle">
-            Question Title!
+         <h1 id="questionTitle">
+               @ViewData["question"]:
           </h1>
         </div>
         <div class="col-md-3">
+         
           <div id="buttonDiv">
-            <button id="nextQuestion">Next Question!</button>
+            <form method="post">
+            <button id="addDiv">Next Question!</button>
+            </form>
           </div>
+       
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
-          <p id="answerOne">Answer One!:</p>
+          <p id="answerOne">@ViewData["answerOne"]:</p>
         </div>
         <div class="col-md-3">
-          <p id="answerOneCounterP"><span id="answerOneCounter">0</span></p>
+          <p id="answerOneCounterP"><span id="answerOneCounter" runat="server">@ViewData["answerOneCounter"]</span></p>
         </div>
         <div class="col-md-3">
-          <p id="answerTwo">Answer Two:</p>
+          <p id="answerTwo">@ViewData["answerTwo"]:</p>
         </div>
         <div class="col-md-3">
-          <p id="answerTwoCounterP"><span id="answerTwoCounter">0</span></p>
+          <p id="answerTwoCounterP"><span id="answerTwoCounter" runat="server">@ViewData["answerOneCounter"]</span></p>
         </div>
         
       </div>
