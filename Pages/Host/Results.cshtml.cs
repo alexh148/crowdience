@@ -14,6 +14,8 @@ using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Http.Headers;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace crowdience.Pages
 {
@@ -63,7 +65,11 @@ namespace crowdience.Pages
             using (WebClient wc = new WebClient())
             {
                 //Should Work but doesn't - Saule
+                System.Net.ServicePointManager.ServerCertificateValidationCallback =
+               delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+               { return true; };
                 var json = wc.DownloadString("https://localhost:5001/api/Question");
+                Console.WriteLine(json);
             }
         }
 
