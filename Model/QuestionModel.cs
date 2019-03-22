@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Crowdience.Models
+namespace crowdience.Models
 {
     public class Question
     {
@@ -12,6 +12,5 @@ namespace Crowdience.Models
 
         public int GameId { get; set; }
         public Game Game { get; set; }
-
     }
 }

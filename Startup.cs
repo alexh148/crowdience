@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using crowdience.Hubs;
-using Crowdience.Models;
+using crowdience.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace crowdience

@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Crowdience.Models;
+using crowdience.Models;
 
 
-namespace Crowndience.Controllers
+namespace crowdience.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

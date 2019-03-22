@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Crowdience.Models
+namespace crowdience.Models
 {
     public class Game
     {
