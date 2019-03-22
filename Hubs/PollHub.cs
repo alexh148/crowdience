@@ -26,5 +26,11 @@ namespace crowdience.Hubs
         {
             await Clients.All.SendAsync("ReceiveQuestion", question);
         }
+
+        public async Task SendUid(string question)
+        {
+            await Clients.All.SendAsync("ReceiveUid", question);
+        }
+
     }
 }

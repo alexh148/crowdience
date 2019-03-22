@@ -1,8 +1,16 @@
+"use strict";
+
+let connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
+
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
+
 $("#startGame").click(function (event) {
     event.preventDefault()
     let uid = document.getElementById("uid").value;
     localStorage.setItem("uid", uid);
-    // $(location).attr('href', '/Host')
+    
     var data = {
         inProgress: true,
         uniqueId: uid
@@ -15,6 +23,10 @@ $("#startGame").click(function (event) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
-    }).then(response => response)
+    }).then($(location).attr('href', '/Host'))
+    
+    connection.invoke("SendUid", uid).catch(function (err) {
+        return console.error(err.toString());
+    });
 
 });
