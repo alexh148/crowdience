@@ -3,6 +3,43 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
 var coupleCounter = 1;
 
+connection.start().catch(function (err) {
+  return console.error(err.toString());
+});
+
+connection.on("ReceiveCoupleVote", function (couple, message, myResponseId, myResponseVal) {
+  localStorage.setItem(`couplename${coupleCounter}`, couple)
+  localStorage.setItem(`myResponseId${coupleCounter}`, myResponseVal)
+  coupleCounter++;
+})
+
+connection.on("ReceiveMessage", function (
+  user,
+  message,
+  myResponseId,
+  myResponseVal
+) {
+  var msg = message
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+  // var encodedMsg = user + " says " + msg;
+  var pollResultMsg = user + " voted for '" + myResponseVal + "'.";
+
+  var ulPoll = document.getElementById("messagesList");
+  var liPollResult = document.createElement("li");
+  liPollResult.textContent = pollResultMsg;
+
+  ulPoll.insertBefore(liPollResult, ulPoll.childNodes[0]);
+
+  // Increment Counter
+  console.log(myResponseId + "Counter")
+  var counter = document.getElementById(myResponseId + "Counter").innerHTML;
+  counter++;
+  document.getElementById(myResponseId + "Counter").innerHTML = counter;
+  addData(myChart);
+});
+
 Chart.defaults.global.defaultFontColor = "white";
 var ctx = document.getElementById("bar-chart-horizontal");
 ctx.height = 120;
@@ -44,52 +81,6 @@ var myChart = new Chart(ctx, {
   }
 });
 
-connection.on("ReceiveQuestion", function (question) {
-  console.log(question);
-  document.getElementById("questionTitle").innerHTML = question;
-  document.getElementById("answerOneCounter").innerHTML = 0;
-  document.getElementById("answerTwoCounter").innerHTML = 0;
-  document.getElementById("messagesList").innerHTML = "";
-  addData(myChart);
-});
-
-connection.on("ReceiveMessage", function (
-  user,
-  message,
-  myResponseId,
-  myResponseVal
-) {
-  // alert("myResponseId=" + myResponseId + ",myResponseVal=" + myResponseVal);
-  var msg = message
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-  // var encodedMsg = user + " says " + msg;
-  var pollResultMsg = user + " voted for '" + myResponseVal + "'.";
-
-  // var liMessage = document.createElement("li");
-  // liMessage.textContent = encodedMsg;
-  // document.getElementById("messagesList").appendChild(liMessage);
-
-  var ulPoll = document.getElementById("messagesList");
-  var liPollResult = document.createElement("li");
-  liPollResult.textContent = pollResultMsg;
-
-  // append to top
-  ulPoll.insertBefore(liPollResult, ulPoll.childNodes[0]);
-
-  // append to end
-  // document.getElementById("messagesList").appendChild(liPollResult);
-
-
-  // Increment Counter
-  console.log(myResponseId + "Counter")
-  var counter = document.getElementById(myResponseId + "Counter").innerHTML;
-  counter++;
-  document.getElementById(myResponseId + "Counter").innerHTML = counter;
-  addData(myChart);
-});
-
 function addData(myChart) {
   console.log("Add Data Called");
   myChart.data.datasets[0].data = [
@@ -98,13 +89,3 @@ function addData(myChart) {
   ];
   myChart.update();
 }
-
-connection.start().catch(function (err) {
-  return console.error(err.toString());
-});
-
-connection.on("ReceiveCoupleVote", function (couple, message, myResponseId, myResponseVal) {
-  localStorage.setItem(`couplename${coupleCounter}`, couple)
-  localStorage.setItem(`myResponseId${coupleCounter}`, myResponseVal)
-  coupleCounter++;
-})

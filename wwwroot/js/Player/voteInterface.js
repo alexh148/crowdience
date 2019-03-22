@@ -3,11 +3,21 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
 var counter = 0;
 
+connection.on("ReceiveQuestion", function (question) {
+    console.log(question);
+    document.getElementById("questionTitle").innerHTML = question;
+});
+
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
+
 document.getElementById("sendButton").addEventListener("click", function (event) {
     var user = localStorage.getItem("user");
-    var message = ""; //document.getElementById("messageInput").value;
-    //var myResponse = document.getElementById("myResponse").value;
+    // Not needed?
+    var message = "";
 
+    // Change to required field in HTML?
     if (!user) {
         user = "[anonymous]";
     }
@@ -23,13 +33,3 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     }
     event.preventDefault();
 });
-
-connection.on("ReceiveQuestion", function(question) {
-    console.log(question);
-    document.getElementById("questionTitle").innerHTML = question;
-  });
-
-connection.start().catch(function (err) {
-    return console.error(err.toString());
-});
-
