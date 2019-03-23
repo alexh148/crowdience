@@ -5,7 +5,16 @@ connection.start().catch(function (err) {
     return console.error(err.toString());
 });
 
+
 $(document).ready(function () {
+    // $("#nextQuestion").click(function () {
+    //     console.log("Next question clicked!");
+    //     var question = document.getElementById("questionTitle").innerHTML;
+    //     console.log(question);
+    //     connection.invoke("SendQuestion", question).catch(function (err) {
+    //         return console.error(err.toString());
+    //     });
+    // })
     // Old Way!
     // var answerOneVotes = localStorage.getItem("answerOneVotes");
     // var answerTwoVotes = localStorage.getItem("answerTwoVotes");
@@ -15,8 +24,8 @@ $(document).ready(function () {
     // document.getElementById("answerTwoFinalCounter").innerHTML = answerTwoVotes;
 
     // Old Way!
-    // var answerOneVotes = document.getElementById("answerOneFinalCounter").innerHTML;
-    // var answerTwoVotes = document.getElementById("answerTwoFinalCounter").innerHTML;
+    var answerOneVotes = document.getElementById("answerOneFinalCounter").innerHTML;
+    var answerTwoVotes = document.getElementById("answerTwoFinalCounter").innerHTML;
     // var groomName = localStorage.getItem("couplename1")
     // var groomVote = localStorage.getItem("myResponseId1");
     // var brideName = localStorage.getItem("couplename2");

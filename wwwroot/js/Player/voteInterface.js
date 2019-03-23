@@ -5,7 +5,7 @@ var counter = 0;
 
 connection.on("ReceiveQuestion", function (question) {
     console.log(question);
-    document.getElementById("questionTitle").innerHTML = question;
+    $("#questionTitle").html(question);
 });
 
 connection.start().catch(function (err) {

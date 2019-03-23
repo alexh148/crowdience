@@ -1,16 +1,17 @@
 @page
-<div class="container">
-  <div class="row">
+@model PlayerLobbyModel
+<div id="lobby">
+    <div class="row">
     <div class="col-6">
       Enter Username: <input type="text" id="username" />
     </div>
-  </div>
+    <input type="button" id="joinGame" value="Join Game!" />
 
-  <div class="row">
-    <div class="col-12">
-      <input type="button" id="joinGame" value="Join Game!" />
-    </div>
-  </div>
+</div>
+
+<div id="playerJoined" style="display:none;">
+      <h1>Thanks for Joining!</h1>
+  <h3>Please wait for the host to start the game :P</h3>
 </div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

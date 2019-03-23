@@ -24,5 +24,16 @@ namespace crowdience.Controllers
         {
             return _context.Questions.OrderByDescending(i => i.Id).ToList();
         }
+
+        [HttpGet("{id}", Name = "GetQuestion")]
+        public ActionResult<Question> GetById(int id)
+        {
+            var question = _context.Questions.Find(id);
+            if (question == null)
+            {
+                return NotFound();
+            }
+            return question;
+        }
     }
 }

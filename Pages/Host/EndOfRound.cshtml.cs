@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Web;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
+using Newtonsoft.Json.Linq;
 
 namespace crowdience.Pages
 {
@@ -20,8 +24,25 @@ namespace crowdience.Pages
         private String bride { get; set; }
         private String groomAnswer { get; set; }
         private String brideAnswer { get; set; }
+
+        public void GetQuestions()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                //Should Work but doesn't - Saule
+                System.Net.ServicePointManager.ServerCertificateValidationCallback =
+               delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+               { return true; };
+                var json = wc.DownloadString($"https://localhost:5001/api/Question/{Request.Query["round"]}");
+                Console.WriteLine(json);
+                var questionObject = JObject.Parse(json);
+                question = questionObject["questionTitle"].ToString();
+                Console.WriteLine(question);
+            }
+        }
         public void OnGet()
         {
+            GetQuestions();
             SetVariables();
             ViewData["question"] = question;
             ViewData["answerOne"] = answerOne;
@@ -36,16 +57,15 @@ namespace crowdience.Pages
         }
         public void OnPost()
         {
+            // Navigate to next round
             var qNumber = Convert.ToInt32(Request.Query["round"]);
             Response.Redirect($"/Host/Results?Round={qNumber + 1}");
         }
-
         public void SetVariables()
         {
             // The Current Round
             var qNumber = Request.Query["round"];
             // Get Request for: Question, Answers, Results and Couple Info
-            question = qNumber;
             answerOne = "A1: <N>";
             answerTwo = "A2: <N>";
             answerOneCounters = 25;

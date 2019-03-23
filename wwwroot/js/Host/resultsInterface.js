@@ -3,8 +3,18 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
 var coupleCounter = 1;
 
+// connection.start().catch(function (err) {
+//   return console.error(err.toString());
+// });
+// Start Connection and Update All Player Screens
 connection.start().catch(function (err) {
   return console.error(err.toString());
+}).then(function () {
+  var question = document.getElementById("questionTitle").innerHTML;
+  console.log(question);
+  connection.invoke("SendQuestion", question).catch(function (err) {
+    return console.error(err.toString());
+  })
 });
 
 connection.on("ReceiveCoupleVote", function (couple, message, myResponseId, myResponseVal) {
