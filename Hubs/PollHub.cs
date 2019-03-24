@@ -18,9 +18,9 @@ namespace crowdience.Hubs
         {
             await Clients.All.SendAsync("ReceiveUser", user);
         }
-        public async Task SendMessage(string user, string message, string responseID, string responseVal)
+        public async Task SendMessage(string user, string responseID, string responseVal)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message, responseID, responseVal);
+            await Clients.All.SendAsync("ReceiveMessage", user, responseID, responseVal);
         }
         public async Task SendQuestion(string question)
         {
@@ -30,6 +30,11 @@ namespace crowdience.Hubs
         public async Task SendUid(string question)
         {
             await Clients.All.SendAsync("ReceiveUid", question);
+        }
+
+        public async Task StartGame() 
+        {
+            await Clients.All.SendAsync("GameStarted");
         }
 
     }

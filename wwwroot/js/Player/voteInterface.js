@@ -1,35 +1,44 @@
 ﻿"use strict";
 
+// Defines Hub
 var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
 var counter = 0;
 
-connection.on("ReceiveQuestion", function (question) {
-    console.log(question);
-    $("#questionTitle").html(question);
-});
-
+// Opens Connection to Hub
 connection.start().catch(function (err) {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
-    var user = localStorage.getItem("user");
-    // Not needed?
-    var message = "";
+// When Document loads listen for Question from Host
+// When Vote is clicked send Vote to Host
+$(document).ready(function () {
+    receiveQuestionFromHost();
+    $('#vote').on('click', function () {
+        event.preventDefault();
+        sendVoteToHost();
+    });
+})
 
-    // Change to required field in HTML?
-    if (!user) {
-        user = "[anonymous]";
-    }
+// Listen for Question from Host
+function receiveQuestionFromHost() {
+    connection.on("ReceiveQuestion", function (question) {
+        $("#questionTitle").html(question);
+    });
+}
 
+// Send Vote to Host
+function sendVoteToHost() {
+    var username = localStorage.getItem("username");
+    // If something is selected
     if ($('input:radio[name=myResponse]').is(':checked')) {
+        // Assign Values
         var myResponseId = $('input[name=myResponse]:checked').attr('id');
         var myResponseVal = $('input[name=myResponse]:checked').val();
-        connection.invoke("SendMessage", user, message, myResponseId, myResponseVal).catch(function (err) {
+        // Broadcast to Host
+        connection.invoke("SendMessage", username, myResponseId, myResponseVal).catch(function (err) {
             return console.error(err.toString());
         });
     } else {
         return console.log("No response selected.");
     }
-    event.preventDefault();
-});
+}

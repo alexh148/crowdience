@@ -25,15 +25,10 @@ connection.on("ReceiveCoupleVote", function (couple, message, myResponseId, myRe
 
 connection.on("ReceiveMessage", function (
   user,
-  message,
   myResponseId,
   myResponseVal
 ) {
-  var msg = message
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-  // var encodedMsg = user + " says " + msg;
+
   var pollResultMsg = user + " voted for '" + myResponseVal + "'.";
 
   var ulPoll = document.getElementById("messagesList");

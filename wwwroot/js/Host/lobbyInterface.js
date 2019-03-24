@@ -1,10 +1,17 @@
 "use strict";
-console.log(localStorage.getItem("questions"))
 var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
 
 connection.start().catch(function(err) {
   return console.error(err.toString());
 });
+
+$(document).ready(function () {
+  $( "#start" ).click(function() {
+    connection.invoke("StartGame").catch(function (err) {
+      return console.error(err.toString());
+    })
+  })
+})
 
 connection.on("ReceiveUser", function(user) {
     var joinedUser = user + " joined the game!";
@@ -24,10 +31,6 @@ connection.on("ReceiveCouple", function(user) {
     ulCouple.insertBefore(liCouple, ulCouple.childNodes[0]);
   });
 
-// $( "#start" ).click(function(event) {
-//   event.preventDefault()
-//   $(location).attr('href', '/Host/Results')
 
-// })
 
 
