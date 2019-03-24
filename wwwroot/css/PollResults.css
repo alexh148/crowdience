@@ -68,3 +68,19 @@ body {
 #rightorwrong {
   font-size: 300%;
 }
+
+#spongebob {
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+#waitingRoom, #lobby {
+  margin: 25px;
+  text-align: center;
+}
+
+#joinGame {
+  margin: 15px;
+}
+

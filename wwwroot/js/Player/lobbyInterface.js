@@ -7,36 +7,40 @@ connection.start().catch(function (err) {
 });
 
 $(document).ready(function () {
-    // $('#joinGame').on('click', function () {
-    //     console.log("Click Confirmed")
-    //     if ($('#lobby').css('display') != 'none') {
-    //         $('#playerJoined').html('Here is my dynamic content').show().siblings('div').hide();
-    //     } else if ($('#playerJoined').css('display') != 'none') {
-    //         $('#lobby').show().siblings('div').hide();
-    //     }
-    // });
-
     $('#joinGame').on('click', function () {
-        if ($('#lobby').css('display') != 'none') {
-            $('#playerJoined').show().siblings('div').hide();
-        } else if ($('#playerJoined').css('display') != 'none') {
-            $('#lobby').show().siblings('div').hide();
+        let username = $('#username').val() 
+        if (username) {
+            showWaitingRoom();
+            sendUsernameToHost(username);
         }
     });
 })
 
-document.getElementById("joinGame").addEventListener("click", function (event) {
-    event.preventDefault();
-    let username = document.getElementById("username").value;
-    localStorage.setItem("user", username);
-
-    if (!username) {
-        username = "[anonymous]";
+// Hides Lobby, shows Waiting Room
+function showWaitingRoom() {
+    if ($('#lobby').css('display') != 'none') {
+        $('#waitingRoom').show().siblings('div').hide();
     }
+}
 
+function sendUsernameToHost(username) {
     connection.invoke("SendUser", username).catch(function (err) {
         return console.error(err.toString());
     });
+}
 
-    // $(location).attr('href', '/Player/Vote')
-});
+// document.getElementById("joinGame").addEventListener("click", function (event) {
+//     event.preventDefault();
+//     let username = document.getElementById("username").value;
+//     localStorage.setItem("user", username);
+
+//     if (!username) {
+//         username = "[anonymous]";
+//     }
+
+//     connection.invoke("SendUser", username).catch(function (err) {
+//         return console.error(err.toString());
+//     });
+
+//     // $(location).attr('href', '/Player/Vote')
+// });
