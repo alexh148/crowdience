@@ -2,7 +2,6 @@
 
 // Defines Hub
 var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
-var counter = 0;
 
 // Opens Connection to Hub
 connection.start().catch(function (err) {

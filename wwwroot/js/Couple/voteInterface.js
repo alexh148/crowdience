@@ -1,32 +1,43 @@
 "use strict";
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
+// Defines Hub
+let connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
-    event.preventDefault();
-    var couple = localStorage.getItem("couple");
-    var message = ""; //document.getElementById("messageInput").value;
+// Opens Connection to Hub
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
 
-    if (!couple) {
-        couple = "[anonymous]";
-    }
+// When Document loads listen for Question from Host
+// When Vote is clicked send Vote to Host
+$(document).ready(function () {
+    receiveQuestionFromHost();
+    $('#vote').on('click', function () {
+        event.preventDefault();
+        sendVoteToHost();
+    });
+})
+
+// Listen for Question from Host
+function receiveQuestionFromHost() {
+    connection.on("ReceiveQuestion", function (question) {
+        $("#questionTitle").html(question);
+    });
+}
+
+// Send Vote to Host
+function sendVoteToHost() {
+    var couple = localStorage.getItem("username");
+    // If something is selected
     if ($('input:radio[name=myResponse]').is(':checked')) {
+        // Assign Values
         var myResponseId = $('input[name=myResponse]:checked').attr('id');
         var myResponseVal = $('input[name=myResponse]:checked').val();
-
-        connection.invoke("SendCoupleVote", couple, message, myResponseId, myResponseVal).catch(function (err) {
+        // Broadcast to Host
+        connection.invoke("SendCoupleVote", couple, myResponseId, myResponseVal).catch(function (err) {
             return console.error(err.toString());
         });
     } else {
         return console.log("No response selected.");
     }
-});
-
-connection.on("ReceiveQuestion", function (question) {
-    console.log(question);
-    document.getElementById("questionTitle").innerHTML = question;
-});
-
-connection.start().catch(function (err) {
-    return console.error(err.toString());
-});
+}

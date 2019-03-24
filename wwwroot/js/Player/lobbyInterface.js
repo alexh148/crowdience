@@ -8,7 +8,7 @@ connection.start().catch(function (err) {
     return console.error(err.toString());
 });
 
-// Listens for GameStarted, routes to Vote page
+// Listens for GameStarted, routes to PLAYER Vote page
 connection.on("GameStarted", function(user) {
     $(location).attr('href', '/Player/Vote')
   });
@@ -39,19 +39,3 @@ function sendUsernameToHost(username) {
         return console.error(err.toString());
     });
 }
-
-// document.getElementById("joinGame").addEventListener("click", function (event) {
-//     event.preventDefault();
-//     let username = document.getElementById("username").value;
-//     localStorage.setItem("user", username);
-
-//     if (!username) {
-//         username = "[anonymous]";
-//     }
-
-//     connection.invoke("SendUser", username).catch(function (err) {
-//         return console.error(err.toString());
-//     });
-
-//     // $(location).attr('href', '/Player/Vote')
-// });
