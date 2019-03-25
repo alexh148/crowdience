@@ -61,6 +61,7 @@ body {
   opacity: .3;
   transition: opacity .5s ease-out;
   font-size: 26pt;
+  border-radius: 50%;
 }
 
 .startButton:hover {
