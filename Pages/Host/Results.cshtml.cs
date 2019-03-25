@@ -33,7 +33,7 @@ namespace crowdience.Pages
         public void GetQuestion()
         {
             int round = Convert.ToInt32(Request.Query["round"]);
-            var questionFromDb = _context.Questions.Find(round);
+            Question questionFromDb = _context.Questions.Find(round);
             question = questionFromDb.QuestionTitle;
         }
 
