@@ -10,49 +10,36 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using Newtonsoft.Json.Linq;
+using crowdience.Models;
 
 namespace crowdience.Pages
 {
     public class HostEndOfRoundModel : PageModel
     {
-        private String question { get; set; }
-        private String answerOne { get; set; }
-        private String answerTwo { get; set; }
-        private int answerOneCounters { get; set; }
-        private int answerTwoCounters { get; set; }
-        private String groom { get; set; }
-        private String bride { get; set; }
-        private String groomAnswer { get; set; }
-        private String brideAnswer { get; set; }
+        private Question question { get; set;}
+        private Game game {get; set;}
+        private readonly CrowdienceContext _context;
 
-        public void GetQuestions()
+        public HostEndOfRoundModel(CrowdienceContext context)
         {
-            using (WebClient wc = new WebClient())
-            {
-                //Should Work but doesn't - Saule
-                System.Net.ServicePointManager.ServerCertificateValidationCallback =
-               delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-               { return true; };
-                var json = wc.DownloadString($"https://localhost:5001/api/Question/{Request.Query["round"]}");
-                Console.WriteLine(json);
-                var questionObject = JObject.Parse(json);
-                question = questionObject["questionTitle"].ToString();
-                Console.WriteLine(question);
-            }
+            _context = context;
+        }
+
+        public void GetQuestion()
+        {
+            int round = Convert.ToInt32(Request.Query["round"]);
+            question = _context.Questions.Find(round);
+        }
+
+        public void GetGame()
+        {
+            int round = Convert.ToInt32(Request.Query["round"]);
+            game = _context.Games.Find(round);
         }
         public void OnGet()
         {
-            GetQuestions();
+            GetQuestion();
             SetVariables();
-            ViewData["question"] = question;
-            ViewData["answerOne"] = answerOne;
-            ViewData["answerTwo"] = answerTwo;
-            ViewData["answerOneCounters"] = answerOneCounters;
-            ViewData["answerTwoCounters"] = answerTwoCounters;
-            ViewData["groom"] = groom;
-            ViewData["bride"] = bride;
-            ViewData["groomAnswer"] = groomAnswer;
-            ViewData["brideAnswer"] = brideAnswer;
             AudienceLogic();
         }
         public void OnPost()
@@ -63,24 +50,22 @@ namespace crowdience.Pages
         }
         public void SetVariables()
         {
-            // The Current Round
-            var qNumber = Request.Query["round"];
-            // Get Request for: Question, Answers, Results and Couple Info
-            answerOne = "A1: <N>";
-            answerTwo = "A2: <N>";
-            answerOneCounters = 25;
-            answerTwoCounters = 15;
-            groom = "G <N>";
-            bride = "B <N>";
-            groomAnswer = "A2: <N>";
-            brideAnswer = "A2: <N>";
+            ViewData["question"] = question.QuestionTitle;
+            ViewData["answerOne"] = "answerOne";
+            ViewData["answerTwo"] = "answerTwo";
+            ViewData["answerOneCounters"] = question.VoteOneTotal;
+            ViewData["answerTwoCounters"] = question.VoteTwoTotal;
+            ViewData["groom"] = "game.coupleOneName";
+            ViewData["bride"] = "game.coupleTwoName";
+            ViewData["groomAnswer"] = question.CoupleOneVote;
+            ViewData["brideAnswer"] = question.CoupleTwoVote;
         }
         public void AudienceLogic()
         {
-            if (groomAnswer == brideAnswer)
+            if (question.CoupleOneVote == question.CoupleTwoVote)
             {
-                if ((answerOneCounters > answerTwoCounters && groomAnswer == answerOne)
-                    || (answerOneCounters < answerTwoCounters && groomAnswer == answerTwo))
+                if ((question.VoteOneTotal > question.VoteTwoTotal && question.CoupleOneVote == "answerOne")
+                    || (question.VoteOneTotal < question.VoteTwoTotal && question.CoupleOneVote == "answerTwo"))
                 {
                     ViewData["audience"] = "Correct! :D";
                 }
@@ -91,14 +76,7 @@ namespace crowdience.Pages
             }
             else
             {
-                if (answerOneCounters == answerTwoCounters)
-                {
-                    ViewData["audience"] = "Correct! :D";
-                }
-                else
-                {
-                    ViewData["audience"] = "Wrong! :(";
-                }
+                ViewData["audience"] = "Bride and Groom couldn't agree!";
             }
         }
     }

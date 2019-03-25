@@ -23,25 +23,18 @@ namespace crowdience.Pages
     public class HostResultsModel : PageModel
     {
         private readonly CrowdienceContext _context;
+        private String question { get; set; }
 
         public HostResultsModel(CrowdienceContext context)
         {
             _context = context;
         }
-        private String question { get; set; }
 
         public void GetQuestion()
         {
-            using (WebClient wc = new WebClient())
-            {
-                //Should Work but doesn't - Saule
-                System.Net.ServicePointManager.ServerCertificateValidationCallback =
-               delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-               { return true; };
-                var json = wc.DownloadString($"https://localhost:5001/api/Question/{Request.Query["round"]}");
-                var questionObject = JObject.Parse(json);
-                question = questionObject["questionTitle"].ToString();
-            }
+            int round = Convert.ToInt32(Request.Query["round"]);
+            var questionFromDb = _context.Questions.Find(round);
+            question = questionFromDb.QuestionTitle;
         }
 
         public bool CheckEndOfGame(string round)
