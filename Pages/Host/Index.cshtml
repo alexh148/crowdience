@@ -2,6 +2,22 @@
 @model HostIndexModel
 <div class="container">
   <h1>Add your questions!</h1>
+  <fieldset class="form-group">
+<form>
+    <legend>Select Two Play Icons:</legend>
+    <div class="cc-selector-2">
+        <input class="form-check-input" id="girl12" type="checkbox" value="girl1" />
+        <label class="drinkcard-cc girl1" for="girl12"></label>
+        <input class="form-check-input" id="girl22" type="checkbox" value="girl2" />
+        <label class="drinkcard-cc girl2"for="girl22"></label>
+        </br>
+        <input class="form-check-input" id="boy12" type="checkbox" value="boy1" />
+        <label class="drinkcard-cc boy1" for="boy12"></label>
+        <input class="form-check-input" id="boy22" type="checkbox" value="boy2" />
+        <label class="drinkcard-cc boy2"for="boy22"></label>
+    </div>  
+</form>
+</fieldset>
   <div class="row">&nbsp;</div>
   <button id="custom">Custom Game</button>
   <button id="preset">Preset Game</button>
@@ -51,22 +67,7 @@
 </div>
 
 
-<fieldset class="form-group">
-<form>
-    <legend>Select Two Play Icons:</legend>
-    <div class="cc-selector-2">
-        <input class="form-check-input" id="girl12" type="checkbox" value="girl1" />
-        <label class="drinkcard-cc girl1" for="girl12"></label>
-        <input class="form-check-input" id="girl22" type="checkbox" value="girl2" />
-        <label class="drinkcard-cc girl2"for="girl22"></label>
-        </br>
-        <input class="form-check-input" id="boy12" type="checkbox" value="boy1" />
-        <label class="drinkcard-cc boy1" for="boy12"></label>
-        <input class="form-check-input" id="boy22" type="checkbox" value="boy2" />
-        <label class="drinkcard-cc boy2"for="boy22"></label>
-    </div>  
-</form>
-</fieldset>
+
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
