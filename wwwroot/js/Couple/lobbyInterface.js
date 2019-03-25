@@ -21,8 +21,10 @@ $(document).ready(function () {
             // Set Username
             localStorage.setItem("username", username);
             showWaitingRoom();
-            sendCoupleNameToHost(username);
-            // postToDatabase(username);
+            // sendCoupleNameToHost(username);
+            // // Need to sort gameId stuff
+            // let gameId = 1;
+            // postToDatabase(username, gameId);
         }
     });
 })
@@ -44,14 +46,16 @@ function sendCoupleNameToHost(username) {
 
 // Checks if its Couple 1 or Couple 2
 // NEEDS TESTING!!
-function firstPersonJoining(username) {
+function firstPersonJoining(gameId) {
     // Get Game API
-    fetch("/api/Game/")
+    fetch(`/api/Game/${gameId}`)
     .then(response => response.json())
     .then(game => {
         // If Couple One exists, return false
         // If it doesn't exist return true
+        console.log(game);
         if (game.coupleOne) {
+            console.log(game.coupleOne)
             return false
         } else {
             return true
@@ -60,8 +64,8 @@ function firstPersonJoining(username) {
 }
     
 // Posts Couple Name to Database
-function postToDatabase(username) {
-    if (firstPersonJoining(username)) {
+function postToDatabase(username, gameId) {
+    if (firstPersonJoining(gameId)) {
         var data = {
             coupleOne: username
         }
@@ -71,12 +75,12 @@ function postToDatabase(username) {
         }
     }
     // Might need a callback here, test it.
-    fetch("/api/Game", {
-        method: "POST",
+    fetch(`/api/Game/${gameId}`, {
+        method: 'PATCH',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     })
-    .then($(location).attr('href', '/Couple/Vote'))
+    // .then($(location).attr('href', '/Couple/Vote'))
 }
 
 // Is this needed?

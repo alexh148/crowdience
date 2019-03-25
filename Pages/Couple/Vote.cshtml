@@ -1,9 +1,24 @@
 @page
-<div class="container">
+<div>
+  <h1 id="questionTitle"></h1>
+  </br>
+  <div id="voteContainer">
+    <input type="radio" name="myResponse" id="answerOne" value="He Did" />
+    <label for="answerOne">Answer One!</label>
+    </br>
+    <input type="radio" name="myResponse" id="answerTwo" value="She Did" />
+    <label for="answerTwo">Answer Two!</label>
+    </br>
+    <input type="button" id="vote" value="Vote Now" />
+  </div>
+</div>
+
+
+<!-- <div class="container">
   <div class="row">
-    <!-- <div class="col-6">
+    <div class="col-6">
       User: <input type="text" id="userInput" />
-    </div> -->
+    </div>
     <div class="col-6">&nbsp;</div>
   </div>
   <div class="row">
@@ -30,7 +45,7 @@
       <ul id="messagesListChanged" />
     </div>
   </div>
-</div>
+</div> -->
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>

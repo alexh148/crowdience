@@ -1,35 +1,16 @@
-﻿@page
+﻿@page 
 @model PlayerVoteModel
-<div class="container">
-  <div class="row">
-    <!-- <div class="col-6">
-      User: <input type="text" id="userInput" />
-    </div> -->
-    <div class="col-6">&nbsp;</div>
-  </div>
-  <div class="row">
-    <h1 id="questionTitle">@ViewData["question"]</h1>
-  <div class="row">
-    <div class="col-12">
-      <input type="radio" name="myResponse" id="answerOne" value="He Did" />
-      <label for="answerOne">Answer One!</label>
-      <br />
-      <input type="radio" name="myResponse" id="answerTwo" value="She Did" />
-      <label for="answerTwo">Answer Two!</label>
-
-      <div id="bar-chart-horizontal" />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <input type="button" id="vote" value="Vote Now" />
-      <hr />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <ul id="messagesListChanged" />
-    </div>
+<div>
+  <h1 id="questionTitle"></h1>
+  </br>
+  <div id="voteContainer">
+    <input type="radio" name="myResponse" id="answerOne" value="He Did" />
+    <label for="answerOne">Answer One!</label>
+    </br>
+    <input type="radio" name="myResponse" id="answerTwo" value="She Did" />
+    <label for="answerTwo">Answer Two!</label>
+    </br>
+    <input type="button" id="vote" value="Vote Now" />
   </div>
 </div>
 
