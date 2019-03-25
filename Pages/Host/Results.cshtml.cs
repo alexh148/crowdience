@@ -17,10 +17,17 @@ using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 
+
 namespace crowdience.Pages
 {
     public class HostResultsModel : PageModel
     {
+        private readonly CrowdienceContext _context;
+
+        public HostResultsModel(CrowdienceContext context)
+        {
+            _context = context;
+        }
         private String question { get; set; }
 
         public void GetQuestion()
@@ -39,7 +46,7 @@ namespace crowdience.Pages
 
         public bool CheckEndOfGame(string round)
         {
-            if (Convert.ToInt32(round) > 10) { return true; }
+            if (Convert.ToInt32(round) > 5) { return true; }
             else { return false; }
 
         }
@@ -64,8 +71,22 @@ namespace crowdience.Pages
         }
         public void OnPost()
         {
+            SaveResultsToDb(); 
             // Need A Patch Request for Results
             Response.Redirect($"/Host/EndOfRound?Round={Request.Query["round"]}");
+        }
+
+        public void SaveResultsToDb()
+        {
+            int round = Convert.ToInt32(Request.Query["round"]);
+            int answerOneTotal = Convert.ToInt32(Request.Form["answerOneFormCounter"]);
+            int answerTwoTotal = Convert.ToInt32(Request.Form["answerTwoFormCounter"]);
+            var question = _context.Questions.Find(round);
+
+            question.VoteOneTotal = answerOneTotal;
+            question.VoteTwoTotal = answerTwoTotal;
+
+            _context.SaveChanges();
         }
 
     }
