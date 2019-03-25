@@ -26,22 +26,30 @@ $(document).ready(function () {
 function recieveAndDisplayConnectingUsers() {
   connection.on("ReceiveUser", function(user) {
     var joinedUser = user + " joined the game!";
-    var ulUsers = document.getElementById("joinedUsers");
-    var liUser = document.createElement("li");
-    liUser.textContent = joinedUser;
-    ulUsers.insertBefore(liUser, ulUsers.childNodes[0]);
+    $('#joinedUsers').prepend(`<li>${joinedUser}</li>`);
+    // var ulUsers = document.getElementById("joinedUsers");
+    // var liUser = document.createElement("li");
+    // liUser.textContent = joinedUser;
+    // ulUsers.insertBefore(liUser, ulUsers.childNodes[0]);
   });
+}
+
+// HELPER: Lists player names and votes in list.
+function listVoters(user, myResponseVal) {
+	var userAndVote = user + " voted for '" + myResponseVal + "'.";
+	$('#messagesList').prepend(`<li>${userAndVote}</li>`);
 }
 
 // Listens for connecting couples, displays them in list.
 function recieveAndDisplayConnectingCouple() {
   connection.on("ReceiveCouple", function(user) {
     var joinedCouple = user + " joined the game!";
-    var ulCouple = document.getElementById("joinedCouple");
-    var liCouple = document.createElement("li");
-    liCouple.textContent = joinedCouple;
+    $('#joinedCouple').prepend(`<li>${joinedCouple}</li>`);
+    // var ulCouple = document.getElementById("joinedCouple");
+    // var liCouple = document.createElement("li");
+    // liCouple.textContent = joinedCouple;
     
-    ulCouple.insertBefore(liCouple, ulCouple.childNodes[0]);
+    // ulCouple.insertBefore(liCouple, ulCouple.childNodes[0]);
   });
 }
 
