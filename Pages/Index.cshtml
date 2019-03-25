@@ -3,15 +3,20 @@
 @{
     ViewData["Title"] = "Home page";
 }
-@{ var welcome = "Welcome Message";}
+@{ var welcome = "Welcome to Crowdience";}
 <div class="text-center">
     <h1 class="display-4">@welcome</h1>
     <h2 class="display-5">
-        Please enter your unique id for the game session:
+        Would you like to join as:
     </h2>
-    <input type="text" id="uid" />
-    <input type="button" id="startGame" value="Play crowdience!" />
 </div>
+   
+<div class="startButtondiv" media="(max-width: 300px)">
+    <input type="button" class="startButton" id="startAsHost" value="Begin as Host"/>
+    <input type="button"class="startButton" id="startAsCouple" value="Part of a couple" />
+    <input type="button" class="startButton" id="startAsPlayer" value="Start as a player" />
+</div>
+
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

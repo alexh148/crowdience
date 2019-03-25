@@ -35,5 +35,14 @@ namespace crowdience.Controllers
             }
             return question;
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Question>> SaveQuestion(Question item)
+        {
+            _context.Questions.Add(item);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetById), new { id = item.Id}, item);
+        }
     }
 }

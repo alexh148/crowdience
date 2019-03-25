@@ -10,7 +10,7 @@ namespace crowdience.Models
         public int questionNumber { get; set; }
         public string questionTitle { get; set; }
 
-        public int GameId { get; set; }
-        public Game Game { get; set; }
+        public string GameUniqueId { get; set; }
+        public Game Game{ get; set; }
     }
 }

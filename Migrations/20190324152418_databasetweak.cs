@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace crowdience.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class databasetweak : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,8 @@ namespace crowdience.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     questionNumber = table.Column<int>(nullable: false),
                     questionTitle = table.Column<string>(nullable: true),
-                    GameId = table.Column<int>(nullable: false)
+                    GameUniqueId = table.Column<string>(nullable: true),
+                    GameId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -41,7 +42,7 @@ namespace crowdience.Migrations
                         column: x => x.GameId,
                         principalTable: "Games",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

@@ -21,7 +21,12 @@ namespace crowdience.Pages
 {
     public class HostResultsModel : PageModel
     {
-        private String question { get; set; }
+        public HostResultsModel(String question) 
+        {
+            this.question = question;
+               
+        }
+                private String question { get; set; }
 
         public void GetQuestion()
         {
