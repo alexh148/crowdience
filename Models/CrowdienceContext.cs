@@ -6,14 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace crowdience.Models
 {
-    public class GameContext : DbContext
+    public class CrowdienceContext : DbContext
     {
-        public GameContext(DbContextOptions<GameContext> options) : base(options)
+        public CrowdienceContext(DbContextOptions<CrowdienceContext> options) : base(options)
         {
         }
         public DbSet<Game> Games { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<Vote> Votes { get; set; }
 
     }
 }

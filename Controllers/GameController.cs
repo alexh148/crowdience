@@ -12,9 +12,9 @@ namespace crowdience.Controllers
     [ApiController]
     public class GameController : Controller
     {
-        private readonly GameContext _context;
+        private readonly CrowdienceContext _context;
 
-        public GameController(GameContext context)
+        public GameController(CrowdienceContext context)
         {
             _context = context;
         }
