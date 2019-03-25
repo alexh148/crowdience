@@ -12,9 +12,9 @@ namespace crowdience.Controllers
     [ApiController]
     public class QuestionController : Controller
     {
-        private readonly GameContext _context;
+        private readonly CrowdienceContext _context;
 
-        public QuestionController(GameContext context)
+        public QuestionController(CrowdienceContext context)
         {
             _context = context;
         }
@@ -34,6 +34,18 @@ namespace crowdience.Controllers
                 return NotFound();
             }
             return question;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<List<Question>>> PostAllQuestions(Question[] questions)
+        {
+            foreach (Question q in questions)
+            {
+                _context.Questions.Add(q);
+            }
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

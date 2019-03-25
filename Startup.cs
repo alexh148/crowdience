@@ -43,7 +43,7 @@ namespace crowdience
 
             services.AddSignalR();
 
-            services.AddDbContext<GameContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<CrowdienceContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
         }
 
