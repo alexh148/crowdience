@@ -17,29 +17,29 @@ using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 
+
 namespace crowdience.Pages
 {
     public class HostResultsModel : PageModel
     {
+        private readonly CrowdienceContext _context;
         private String question { get; set; }
+
+        public HostResultsModel(CrowdienceContext context)
+        {
+            _context = context;
+        }
 
         public void GetQuestion()
         {
-            using (WebClient wc = new WebClient())
-            {
-                //Should Work but doesn't - Saule
-                System.Net.ServicePointManager.ServerCertificateValidationCallback =
-               delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-               { return true; };
-                var json = wc.DownloadString($"https://localhost:5001/api/Question/{Request.Query["round"]}");
-                var questionObject = JObject.Parse(json);
-                question = questionObject["questionTitle"].ToString();
-            }
+            int round = Convert.ToInt32(Request.Query["round"]);
+            Question questionFromDb = _context.Questions.Find(round);
+            question = questionFromDb.QuestionTitle;
         }
 
         public bool CheckEndOfGame(string round)
         {
-            if (Convert.ToInt32(round) > 10) { return true; }
+            if (Convert.ToInt32(round) > 5) { return true; }
             else { return false; }
 
         }
@@ -64,8 +64,22 @@ namespace crowdience.Pages
         }
         public void OnPost()
         {
+            SaveResultsToDb(); 
             // Need A Patch Request for Results
             Response.Redirect($"/Host/EndOfRound?Round={Request.Query["round"]}");
+        }
+
+        public void SaveResultsToDb()
+        {
+            int round = Convert.ToInt32(Request.Query["round"]);
+            int answerOneTotal = Convert.ToInt32(Request.Form["answerOneFormCounter"]);
+            int answerTwoTotal = Convert.ToInt32(Request.Form["answerTwoFormCounter"]);
+            var question = _context.Questions.Find(round);
+
+            question.VoteOneTotal = answerOneTotal;
+            question.VoteTwoTotal = answerTwoTotal;
+
+            _context.SaveChanges();
         }
 
     }

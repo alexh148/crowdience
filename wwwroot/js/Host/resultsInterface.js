@@ -1,96 +1,116 @@
-"use strict";
+'use strict';
 
+// Defines Hub
 var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
-var coupleCounter = 1;
 
-// connection.start().catch(function (err) {
-//   return console.error(err.toString());
-// });
-// Start Connection and Update All Player Screens
-connection.start().catch(function (err) {
-  return console.error(err.toString());
-}).then(function () {
-  var question = document.getElementById("questionTitle").innerHTML;
-  console.log(question);
-  connection.invoke("SendQuestion", question).catch(function (err) {
-    return console.error(err.toString());
-  })
+// Open Connection, then Sends Question and Listen for Votes
+$(document).ready(function () {
+	connection
+	.start()
+	.catch(function (err) {
+		return console.error(err.toString());
+	})
+	.then(function () {
+		sendQuestionToClients();
+	})
+	.then(function() {
+		listenForVotes();
+	})
 });
 
-connection.on("ReceiveCoupleVote", function (couple, message, myResponseId, myResponseVal) {
-  localStorage.setItem(`couplename${coupleCounter}`, couple)
-  localStorage.setItem(`myResponseId${coupleCounter}`, myResponseVal)
-  coupleCounter++;
-})
+// Sends Question To All Clients
+function sendQuestionToClients() {
+	console.log("Sending Question");
+	var question = $('#questionTitle').html();
+	console.log(`${question} send`);
+	connection.invoke('SendQuestion', question).catch(function (err) {
+		return console.error(err.toString());
+	});
+}
+// Listens for Votes, lists users, increments counters and adds data to graph
+function listenForVotes() {
+	console.log("Listening for Votes");
+	connection.on('ReceiveMessage', function (user, myResponseId, myResponseVal) {
+		// Add Users to Voting List
+		listVoters(user, myResponseVal);
+		// Increment Span Counter
+		incrementSpanCounter(myResponseId);
+		// Increment Form
+		incrementFormCounter(myResponseId);
+		// Update Chart
+		addData(myChart);
+	});
+}
 
-connection.on("ReceiveMessage", function (
-  user,
-  myResponseId,
-  myResponseVal
-) {
+// HELPER: Lists player names and votes in list.
+function listVoters(user, myResponseVal) {
+	var userAndVote = user + " voted for '" + myResponseVal + "'.";
+	$('#messagesList').prepend(`<li>${userAndVote}</li>`);
+}
 
-  var pollResultMsg = user + " voted for '" + myResponseVal + "'.";
+// HELPER: Increments Span Counters, visible, needed for Display
+function incrementSpanCounter(myResponseId) {
+	var counter = $(`#${myResponseId}Counter`).html();
+	counter++;
+	$(`#${myResponseId}Counter`).html(counter);
+}
 
-  var ulPoll = document.getElementById("messagesList");
-  var liPollResult = document.createElement("li");
-  liPollResult.textContent = pollResultMsg;
+// HELPER: Increments Form Counters, hidden, needed for Database
+function incrementFormCounter(myResponseId) {
+	var counter = $(`#${myResponseId}FormCounter`).val();
+	counter++;
+	$(`#${myResponseId}FormCounter`).val(counter);
+}
 
-  ulPoll.insertBefore(liPollResult, ulPoll.childNodes[0]);
-
-  // Increment Counter
-  console.log(myResponseId + "Counter")
-  var counter = document.getElementById(myResponseId + "Counter").innerHTML;
-  counter++;
-  document.getElementById(myResponseId + "Counter").innerHTML = counter;
-  addData(myChart);
-});
-
-Chart.defaults.global.defaultFontColor = "white";
-var ctx = document.getElementById("bar-chart-horizontal");
+// Chart Builder, referenced by myChart.
+Chart.defaults.global.defaultFontColor = 'white';
+var ctx = document.getElementById('bar-chart-horizontal');
 ctx.height = 120;
 var myChart = new Chart(ctx, {
-  type: "horizontalBar",
-  data: {
-    labels: ["Him", "Her"],
-    datasets: [{
-      backgroundColor: ["#3e95cd", "#8e5ea2"],
-      data: [0, 0]
-    }]
-  },
-  options: {
-    legend: {
-      display: false
-    },
-    title: {
-      display: true,
-      scaleStartValue: 0
-    },
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: "#262626"
-        },
-        stacked: true,
-        ticks: {
-          min: 0 // minimum value
-        }
-      }],
-      yAxes: [{
-        categoryPercentage: 1.0,
-        barPercentage: 1.0,
-        gridLines: {
-          color: "#262626"
-        }
-      }]
-    }
-  }
+	type: 'horizontalBar',
+	data: {
+		labels: ['Him', 'Her'],
+		datasets: [{
+			backgroundColor: ['#3e95cd', '#8e5ea2'],
+			data: [0, 0]
+		}]
+	},
+	options: {
+		legend: {
+			display: false
+		},
+		title: {
+			display: true,
+			scaleStartValue: 0
+		},
+		scales: {
+			xAxes: [{
+				gridLines: {
+					color: '#262626'
+				},
+				stacked: true,
+				ticks: {
+					min: 0 // minimum value
+				}
+			}],
+			yAxes: [{
+				categoryPercentage: 1.0,
+				barPercentage: 1.0,
+				gridLines: {
+					color: '#262626'
+				}
+			}]
+		}
+	}
 });
 
+// HELPER: Adds data to Chart
 function addData(myChart) {
-  console.log("Add Data Called");
-  myChart.data.datasets[0].data = [
-    document.getElementById("answerOneCounter").innerHTML,
-    document.getElementById("answerTwoCounter").innerHTML
-  ];
-  myChart.update();
+	myChart.data.datasets[0].data = [
+		$('#answerOneCounter').html(),
+		$('#answerTwoCounter').html()
+		// document.getElementById('answerOneCounter').innerHTML,
+		// document.getElementById('answerTwoCounter').innerHTML
+	];
+	myChart.update();
 }
