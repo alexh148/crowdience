@@ -14,7 +14,7 @@ $(document).ready(function () {
     receiveQuestionFromHost();
     receiveIcons();
     $('#vote').on('click', function () {
-        event.preventDefault();
+        // event.preventDefault();
         sendVoteToHost();
     });
 })

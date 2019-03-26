@@ -22,6 +22,10 @@ namespace crowdience.Pages
 {
     public class CoupleVoteModel : PageModel
     {
+        private Question TheQuestion { get; set; }
+        private Game TheGame { get; set; }
+        private int Counter { get; set; } = 1;
+
         private readonly CrowdienceContext _context;
         public CoupleVoteModel(CrowdienceContext context)
         {
@@ -30,9 +34,112 @@ namespace crowdience.Pages
 
         public void OnGet()
         {
+            GetGame();
         }
         public void OnPost()
         {
+            FillOutCoupleVotes();
+        }
+
+        public void GetGame()
+        {
+            TheGame = _context.Games.Find(1);
+            Console.WriteLine(TheGame.coupleOneName);
+            Console.WriteLine(TheGame.coupleTwoName);
+        }
+        public Question GetQuestion(int questionNumber)
+        {
+            // Find is working
+            return _context.Questions.Find(questionNumber);
+
+        }
+
+        public void FillOutCoupleVotes()
+        {
+            TheQuestion = WhichQuestion();
+            Console.WriteLine(TheQuestion.CoupleOneVote);
+            Console.WriteLine(TheQuestion.CoupleTwoVote);
+            if (TheQuestion.CoupleOneVote == "Pending")
+            {
+                TheQuestion.CoupleOneVote = "Couple One Voted";
+                _context.SaveChanges();
+                Console.WriteLine("First Which Question Check");
+
+            }
+            else if (TheQuestion.CoupleOneVote != "Pending" && TheQuestion.CoupleTwoVote == "Pending")
+            {
+                TheQuestion.CoupleTwoVote = "Couple Two Voted";
+                _context.SaveChanges();
+                Console.WriteLine("Second Which Question Check");
+            }
+            else
+            {
+                Console.WriteLine("Third Which Question Check");
+            }
+        }
+
+        public Question WhichQuestion()
+        {
+            // Question WhichQuestion = GetQuestion(Counter);
+            // Console.WriteLine(Counter);
+            // Console.WriteLine(WhichQuestion.QuestionTitle);
+            while (Counter <= 5)
+            {
+                Question WhichQuestion = GetQuestion(Counter);
+
+                if (WhichQuestion.CoupleOneVote == "Pending")
+                {
+                    Console.WriteLine("Couple One is Empty");
+                    return WhichQuestion;
+
+                }
+                else if (WhichQuestion.CoupleOneVote != "Pending" && WhichQuestion.CoupleTwoVote == "Pending")
+                {
+                    Console.WriteLine("Couple Two is Empty");
+                    return WhichQuestion;
+                }
+                Counter++;
+            }
+            Console.WriteLine("First Question Returned");
+            return GetQuestion(5);
+        }
+
+        // public void WhichQuestion()
+        // {
+        //     TheQuestion = GetQuestion(Counter);
+        //     Console.WriteLine(TheQuestion.QuestionTitle);
+        //     while (Counter <= 5)
+        //     {
+        //         if (TheQuestion.CoupleOneVote == "pending")
+        //         {
+        //             TheQuestion.CoupleOneVote = "Couple One Voted";
+        //             _context.SaveChanges();
+
+        //         }
+        //         else if (TheGame.coupleOneName != "pending" && TheGame.coupleTwoName == "pending")
+        //         {
+        //             TheQuestion.CoupleTwoVote = "Couple Two Voted";
+        //             _context.SaveChanges();
+
+        //         }
+        //         else
+        //         {
+        //             Counter++;
+        //         }
+        //     }
+        // }
+
+        public void SaveVoteToDb()
+        {
+            string coupleName = Request.Form["username"];
+
+            if (TheGame.coupleOneName == "pending")
+                TheGame.coupleOneName = coupleName;
+            else if (TheGame.coupleTwoName == "pending")
+                TheGame.coupleTwoName = coupleName;
+            else
+                Console.WriteLine("Table full, truncate it!");
+            _context.SaveChanges();
         }
     }
 }
