@@ -1,19 +1,15 @@
 ﻿@page 
 @model PlayerVoteModel
-<div>
   <h1 id="questionTitle"></h1>
-  </br>
-  <div id="voteContainer">
-    <input type="radio" name="myResponse" id="answerOne" value="He Did" />
-    <label for="answerOne">Answer One!</label>
-    </br>
-    <input type="radio" name="myResponse" id="answerTwo" value="She Did" />
-    <label for="answerTwo">Answer Two!</label>
-    </br>
+
+    <p>Please select your answer:</p>
+    <div id="voteContainer" class="cc-selector-2">
+      <p id="answerOne"></p>
+      <p id="answerTwo"></p>
     <input type="button" id="vote" value="Vote Now" />
   </div>
-</div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/Player/voteInterface.js"></script>
+<link rel="stylesheet" type="text/css" href="~/css/icons.css">

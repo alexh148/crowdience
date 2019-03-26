@@ -10,13 +10,27 @@ $(document).ready(function () {
 	.catch(function (err) {
 		return console.error(err.toString());
 	})
-	.then(function () {
-		sendQuestionToClients();
+	.then(function() {
+		updateResultIcons();
 	})
 	.then(function() {
 		listenForVotes();
 	})
+	.then(function() {
+		sendQuestionToClients();
+	})
+	.then(function() {
+		SendIcons();
+	})
 });
+
+// Updates Result Icons
+function updateResultIcons() {
+	var icon1 = localStorage.getItem("IconId1")
+	var icon2 = localStorage.getItem("IconId2")
+	$('#answerOne').html(`<label class="resultcard-cc ${icon1}" for="${icon1}2"></label>`);
+	$('#answerTwo').html(`<label class="resultcard-cc ${icon2}" for="${icon1}2"></label>`);
+}
 
 // Sends Question To All Clients
 function sendQuestionToClients() {
@@ -27,6 +41,17 @@ function sendQuestionToClients() {
 		return console.error(err.toString());
 	});
 }
+
+// Send Icons to Clients
+function SendIcons(){
+	console.log("Sending Icons");
+    var icon1 = localStorage.getItem("IconId1");
+    var icon2 = localStorage.getItem("IconId2");
+    connection.invoke("SendIconId", icon1, icon2).catch(function (err) {
+        return console.error(err.toString());
+    });
+}
+
 // Listens for Votes, lists users, increments counters and adds data to graph
 function listenForVotes() {
 	console.log("Listening for Votes");
@@ -44,12 +69,14 @@ function listenForVotes() {
 
 // HELPER: Lists player names and votes in list.
 function listVoters(user, myResponseVal) {
-	var userAndVote = user + " voted for '" + myResponseVal + "'.";
-	$('#messagesList').prepend(`<li>${userAndVote}</li>`);
+	var icon = localStorage.getItem(`${myResponseVal}`);
+	console.log(icon);
+	$('#messagesList').prepend(`<li>${user} voted for:<label class="votecard-cc ${icon}" for=${icon}2></label></li>`);
 }
 
 // HELPER: Increments Span Counters, visible, needed for Display
 function incrementSpanCounter(myResponseId) {
+	console.log(`#${myResponseId}Counter`);
 	var counter = $(`#${myResponseId}Counter`).html();
 	counter++;
 	$(`#${myResponseId}Counter`).html(counter);
@@ -109,8 +136,6 @@ function addData(myChart) {
 	myChart.data.datasets[0].data = [
 		$('#answerOneCounter').html(),
 		$('#answerTwoCounter').html()
-		// document.getElementById('answerOneCounter').innerHTML,
-		// document.getElementById('answerTwoCounter').innerHTML
 	];
 	myChart.update();
 }

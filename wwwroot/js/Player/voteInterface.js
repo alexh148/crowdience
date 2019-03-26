@@ -12,6 +12,7 @@ connection.start().catch(function (err) {
 // When Vote is clicked send Vote to Host
 $(document).ready(function () {
     receiveQuestionFromHost();
+    receiveIconsFromHost();
     $('#vote').on('click', function () {
         event.preventDefault();
         sendVoteToHost();
@@ -25,14 +26,29 @@ function receiveQuestionFromHost() {
     });
 }
 
+// Listen for Icons from Host
+function receiveIconsFromHost(){
+    console.log("Receiving Icons");
+    connection.on("ReceiveIconId", function (icon1, icon2) {
+        $('#answerOne').html(`<input id="${icon1}2" class="answerOne" type="radio" name="myResponse" value="IconId1" />
+        <label class="drinkcard-cc ${icon1}" for="${icon1}2"></label>`);
+        $('#answerTwo').html(`<input id="${icon2}2" class="answerTwo" type="radio" name="myResponse" value="IconId2" />
+        <label class="drinkcard-cc ${icon2}" for="${icon2}2"></label>`);
+        console.log(icon1);
+        console.log(icon2);
+    });
+}
+
 // Send Vote to Host
 function sendVoteToHost() {
     var username = localStorage.getItem("username");
     // If something is selected
     if ($('input:radio[name=myResponse]').is(':checked')) {
         // Assign Values
-        var myResponseId = $('input[name=myResponse]:checked').attr('id');
+        var myResponseId = $('input[name=myResponse]:checked').attr('class');
         var myResponseVal = $('input[name=myResponse]:checked').val();
+        console.log(myResponseId);
+        console.log(myResponseVal);
         // Broadcast to Host
         connection.invoke("SendMessage", username, myResponseId, myResponseVal).catch(function (err) {
             return console.error(err.toString());
