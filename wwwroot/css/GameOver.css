@@ -10,3 +10,27 @@
   #hutntai {
     font-size: 30px;
 }
+
+#q1a1, #q2a1, #q3a1, #q4a1, #q5a1,
+#q1a2, #q2a2, #q3a2, #q4a2, #q5a2 {
+  font-size: 75%;
+  padding: 15px;
+  border-radius: 25%;
+}
+
+#q1a1, #q2a1, #q3a1, #q4a1, #q5a1 {
+  border: 3px solid #06080b;
+  background-color: #3e95cd;
+}
+
+#q1a2, #q2a2, #q3a2, #q4a2, #q5a2 {
+  border: 3px solid #400b4c;
+  background-color: #8e5ea2;
+}
+
+p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
