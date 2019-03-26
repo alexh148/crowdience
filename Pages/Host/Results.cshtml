@@ -10,12 +10,12 @@
                @ViewData["question"]:
           </h1>
         </div>
+
         <div class="col-md-3">
-         
+         <form method="post">
           <div id="buttonDiv">
-            <form method="post">
-            <button id="addDiv">View Results!</button>
-            </form>
+            
+            <button type="submit" id="addDiv">View Results!</button>
           </div>
        
         </div>
@@ -25,16 +25,20 @@
           <p id="answerOne">@ViewData["answerOne"]:</p>
         </div>
         <div class="col-md-3">
-          <p id="answerOneCounterP"><span id="answerOneCounter" runat="server">@ViewData["answerOneCounter"]</span></p>
+          <p id="answerOneCounterP" runat="server"><span id="answerOneCounter">@ViewData["answerOneCounter"]</span></p>
+
         </div>
         <div class="col-md-3">
           <p id="answerTwo">@ViewData["answerTwo"]:</p>
         </div>
         <div class="col-md-3">
-          <p id="answerTwoCounterP"><span id="answerTwoCounter" runat="server">@ViewData["answerOneCounter"]</span></p>
+          <p id="answerTwoCounterP"><span id="answerTwoCounter">@ViewData["answerOneCounter"]</span></p>
         </div>
-        
       </div>
+                <input type="hidden" name="answerOneFormCounter" id="answerOneFormCounter" value="@ViewData["answerOneCounter"]" readonly></input>
+          <input type="hidden" name="answerTwoFormCounter" id="answerTwoFormCounter" value="@ViewData["answerTwoCounter"]" readonly></input>
+              </form>
+
       <div class="row">
         <div class="col-md-12">
           <canvas id="bar-chart-horizontal">

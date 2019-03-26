@@ -20,38 +20,19 @@ using System.Net.Security;
 
 namespace crowdience.Pages
 {
-    public class CoupleLobbyModel : PageModel
+    public class CoupleVoteModel : PageModel
     {
-        private Game TheGame { get; set; }
         private readonly CrowdienceContext _context;
-        public CoupleLobbyModel(CrowdienceContext context)
+        public CoupleVoteModel(CrowdienceContext context)
         {
             _context = context;
         }
+
         public void OnGet()
         {
         }
         public void OnPost()
         {
-            GetGame();
-            SaveCoupleNameToDb();
-        }
-        public void GetGame()
-        {
-            TheGame = _context.Games.Find(1);
-        }
-
-        public void SaveCoupleNameToDb()
-        {
-            string coupleName = Request.Form["username"];
-
-            if (TheGame.coupleOneName == "pending")
-                TheGame.coupleOneName = coupleName;
-            else if (TheGame.coupleTwoName == "pending")
-                TheGame.coupleTwoName = coupleName;
-            else
-                Console.WriteLine("Table full, truncate it!");
-            _context.SaveChanges();
         }
     }
 }

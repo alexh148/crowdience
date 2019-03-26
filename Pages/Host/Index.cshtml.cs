@@ -15,6 +15,9 @@ namespace crowdience.Pages
     public class HostIndexModel : PageModel
 
     {
+        private Question[] Questions { get; set; }
+        private Game TheGame { get; set; }
+
         private readonly CrowdienceContext _context;
 
         public HostIndexModel(CrowdienceContext context)
@@ -23,30 +26,53 @@ namespace crowdience.Pages
         }
         public void OnGet()
         {
+            TruncateDatabases();
+            StartNewGame();
         }
         public void OnPost()
+        {
+            SetQuestions();
+            PostQuestionsToDatabase();
+            Response.Redirect($"/Host/Lobby");
+        }
+        public void SetQuestions()
         {
             string question1 = Request.Form["q1"];
             string question2 = Request.Form["q2"];
             string question3 = Request.Form["q3"];
             string question4 = Request.Form["q4"];
             string question5 = Request.Form["q5"];
-            
-            Question[] questions = new Question[]
-            {
-                new Question{QuestionTitle=question1,GameId=1,VoteOneTotal=0,VoteTwoTotal=0,CoupleOneVote="Pending",CoupleTwoVote="Pending"},
-                new Question{QuestionTitle=question2,GameId=1,VoteOneTotal=0,VoteTwoTotal=0,CoupleOneVote="Pending",CoupleTwoVote="Pending"},
-                new Question{QuestionTitle=question3,GameId=1,VoteOneTotal=0,VoteTwoTotal=0,CoupleOneVote="Pending",CoupleTwoVote="Pending"},
-                new Question{QuestionTitle=question4,GameId=1,VoteOneTotal=0,VoteTwoTotal=0,CoupleOneVote="Pending",CoupleTwoVote="Pending"},
-                new Question{QuestionTitle=question5,GameId=1,VoteOneTotal=0,VoteTwoTotal=0,CoupleOneVote="Pending",CoupleTwoVote="Pending"}
-            };
 
-            foreach (Question q in questions)
+            Questions = new Question[]
+            {
+                new Question{Id=1,QuestionTitle=question1,GameId=1,VoteOneTotal=0,VoteTwoTotal=0,CoupleOneVote="Pending",CoupleTwoVote="Pending"},
+                new Question{Id=2,QuestionTitle=question2,GameId=1,VoteOneTotal=0,VoteTwoTotal=0,CoupleOneVote="Pending",CoupleTwoVote="Pending"},
+                new Question{Id=3,QuestionTitle=question3,GameId=1,VoteOneTotal=0,VoteTwoTotal=0,CoupleOneVote="Pending",CoupleTwoVote="Pending"},
+                new Question{Id=4,QuestionTitle=question4,GameId=1,VoteOneTotal=0,VoteTwoTotal=0,CoupleOneVote="Pending",CoupleTwoVote="Pending"},
+                new Question{Id=5,QuestionTitle=question5,GameId=1,VoteOneTotal=0,VoteTwoTotal=0,CoupleOneVote="Pending",CoupleTwoVote="Pending"}
+            };
+        }
+
+        public void PostQuestionsToDatabase()
+        {
+            foreach (Question q in Questions)
             {
                 _context.Questions.Add(q);
             }
             _context.SaveChanges();
-            
         }
-     }
+
+        public void StartNewGame()
+        {
+            TheGame = new Game { Id = 1, coupleOneName = "pending", coupleTwoName = "pending" };
+            _context.Games.Add(TheGame);
+            _context.SaveChanges();
+        }
+
+        public void TruncateDatabases()
+        {
+            _context.Questions.RemoveRange(_context.Questions);
+            _context.Games.RemoveRange(_context.Games);
+        }
+    }
 }

@@ -1,9 +1,12 @@
 @page
+@model CoupleLobbyModel
 <div id="lobby">
     <h1 id="lobbyHeader">Welcome to Crowdience</h1>
     Please Enter a Username: </br>
-    <input type="text" id="username"> </br>
-    <input type="button" id="joinGame" value="Join Game!">
+    <form method="post">
+    <input type="text" id="username" name="username"> </br>
+    <input type="submit" id="joinGame" value="Join Game!">
+    </form>
   </div>
 
 <div id="waitingRoom" style="display:none;">
@@ -13,7 +16,6 @@
 <iframe src="https://giphy.com/embed/brHaCdJqCXijm" width="480" height="348" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/happy-spongebob-squarepants-happiness-brHaCdJqCXijm"></a></p>
       </div>
 </div>
-
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
