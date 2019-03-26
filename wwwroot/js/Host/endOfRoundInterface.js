@@ -10,6 +10,7 @@ connection.start().catch(function (err) {
 
 // Get votes from html and display Graph
 $(document).ready(function () {
+    updateResultIcons();
     // Populated by Razor Page and C# database.
     var answerOneVotes = $('#answerOneFinalCounter').html();
     var answerTwoVotes = $('#answerTwoFinalCounter').html();
@@ -56,3 +57,13 @@ $(document).ready(function () {
         }
     });
 })
+
+// Updates Result Icons
+function updateResultIcons() {
+	var icon1 = localStorage.getItem("IconId1")
+    var icon2 = localStorage.getItem("IconId2")
+    console.log(icon1);
+    console.log(icon2);
+	$('#answerOne').html(`<label class="resultcard-cc ${icon1}" for="${icon1}2"></label>`);
+	$('#answerTwo').html(`<label class="resultcard-cc ${icon2}" for="${icon1}2"></label>`);
+}

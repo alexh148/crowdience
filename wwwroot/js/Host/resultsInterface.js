@@ -10,7 +10,10 @@ $(document).ready(function () {
 	.catch(function (err) {
 		return console.error(err.toString());
 	})
-	.then(function () {
+	.then(function() {
+		updateResultIcons();
+	})
+	.then(function() {
 		listenForVotes();
 	})
 	.then(function() {
@@ -20,6 +23,14 @@ $(document).ready(function () {
 		SendIcons();
 	})
 });
+
+// Updates Result Icons
+function updateResultIcons() {
+	var icon1 = localStorage.getItem("IconId1")
+	var icon2 = localStorage.getItem("IconId2")
+	$('#answerOne').html(`<label class="resultcard-cc ${icon1}" for="${icon1}2"></label>`);
+	$('#answerTwo').html(`<label class="resultcard-cc ${icon2}" for="${icon1}2"></label>`);
+}
 
 // Sends Question To All Clients
 function sendQuestionToClients() {
