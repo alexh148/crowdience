@@ -64,7 +64,11 @@ for (var i = 1; i <= 5; i++) {
             barPercentage: 1.0,
             gridLines: {
               color: "#262626"
-            }
+            },
+            // Hides YAxis Labels
+            ticks: {
+              display: false
+          }
           }
         ]
       }
