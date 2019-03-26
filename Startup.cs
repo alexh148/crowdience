@@ -47,12 +47,10 @@ namespace crowdience
 
             if (Environment.IsDevelopment())
             {   
-                Console.WriteLine("I got to dev");
                 services.AddDbContext<CrowdienceContext>(opt => opt.UseNpgsql("Host=localhost;Port=5432;Database=Crowdience;"));
             }
             else
             {
-                Console.WriteLine("I got to prod");
                 services.AddDbContext<CrowdienceContext>(opt => 
                 {
                     var connString =
