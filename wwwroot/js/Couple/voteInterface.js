@@ -12,6 +12,7 @@ connection.start().catch(function (err) {
 // When Vote is clicked send Vote to Host
 $(document).ready(function () {
     receiveQuestionFromHost();
+    receiveIcons();
     $('#vote').on('click', function () {
         event.preventDefault();
         sendVoteToHost();
@@ -40,4 +41,15 @@ function sendVoteToHost() {
     } else {
         return console.log("No response selected.");
     }
+}
+
+function receiveIcons(){
+    connection.on("ReceiveIconId", function (icon1, icon2) {
+        console.log(icon1);
+        console.log(icon2);
+       $('#voteContainer').prepend(`<input id="${icon1}2" type="radio" name="creditcard" value="He Did" />
+       <label class="drinkcard-cc ${icon1}" for="${icon1}2"></label>`);
+       $('#voteContainer').prepend(`<input id="${icon2}2" type="radio" name="creditcard" value="He Did" />
+       <label class="drinkcard-cc ${icon2}" for="${icon2}2"></label>`);
+    });
 }

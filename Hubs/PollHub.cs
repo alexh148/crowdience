@@ -27,9 +27,9 @@ namespace crowdience.Hubs
             await Clients.All.SendAsync("ReceiveQuestion", question);
         }
 
-        public async Task SendUid(string question)
+        public async Task SendIconId(string icon1, string icon2)
         {
-            await Clients.All.SendAsync("ReceiveUid", question);
+            await Clients.All.SendAsync("ReceiveIconId", icon1, icon2);
         }
 
         public async Task StartGame() 

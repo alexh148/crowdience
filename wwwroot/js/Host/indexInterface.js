@@ -1,3 +1,9 @@
+let connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
+
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
+
 
 $(document).ready(function () {
 
@@ -10,12 +16,23 @@ $(document).ready(function () {
 
 
     $('#create').click(function () {
-        var selected = [];
+        var counter = 1;
         $('.cc-selector-2 input:checked').each(function () {
-            selected.push($(this).attr('value'));
+            localStorage.setItem(`IconId${counter}`, $(this).attr('value'));
+            counter++;
         });
-        console.log(selected);
+       SendIcons();
     })
 
+  
 
 })
+function SendIcons(){
+    var icon1 = localStorage.getItem("IconId1");
+    var icon2 = localStorage.getItem("IconId2");
+    console.log(icon1);
+    console.log(icon2);
+    connection.invoke("SendIconId", icon1, icon2).catch(function (err) {
+        return console.error(err.toString());
+    });
+}
