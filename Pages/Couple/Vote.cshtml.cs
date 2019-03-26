@@ -34,24 +34,33 @@ namespace crowdience.Pages
 
         public void OnGet()
         {
-            GetGame();
         }
         public void OnPost()
         {
+            GetGame();
             FillOutCoupleVotes();
+            IsCoupleOne();
+            Console.WriteLine(Request.Form["CoupleAnswerOne"]);
         }
 
         public void GetGame()
         {
             TheGame = _context.Games.Find(1);
-            Console.WriteLine(TheGame.coupleOneName);
-            Console.WriteLine(TheGame.coupleTwoName);
         }
         public Question GetQuestion(int questionNumber)
         {
             // Find is working
             return _context.Questions.Find(questionNumber);
 
+        }
+
+        public bool IsCoupleOne()
+        {
+            String username = Request.Form["username"];
+            if (TheGame.coupleOneName == username)
+                return true;
+            else
+                return false;
         }
 
         public void FillOutCoupleVotes()

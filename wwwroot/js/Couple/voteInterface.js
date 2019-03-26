@@ -17,6 +17,7 @@ $(document).ready(function () {
         // event.preventDefault();
         sendVoteToHost();
     });
+    $('#username').val(localStorage.getItem("username"));
 })
 
 // Listen for Question from Host
@@ -30,9 +31,9 @@ function receiveQuestionFromHost() {
 function receiveIcons(){
     console.log("Receiving Icons");
     connection.on("ReceiveIconId", function (icon1, icon2) {
-        $('#answerOne').html(`<input id="${icon1}2" type="radio" name="creditcard" value="He Did" />
+        $('#answerOne').html(`<input id="${icon1}2" type="radio" name="CoupleAnswerOne" value="He Did" />
         <label class="drinkcard-cc ${icon1}" for="${icon1}2"></label>`);
-        $('#answerTwo').html(`<input id="${icon2}2" type="radio" name="creditcard" value="He Did" />
+        $('#answerTwo').html(`<input id="${icon2}2" type="radio" name="CoupleAnswerTwo" value="He Did" />
         <label class="drinkcard-cc ${icon2}" for="${icon2}2"></label>`);
     });
 }
