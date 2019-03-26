@@ -26,6 +26,24 @@ function receiveQuestionFromHost() {
     });
 }
 
+// Listen for Icons from Host
+function receiveIcons(){
+    console.log("Receiving Icons");
+    connection.on("ReceiveIconId", function (icon1, icon2) {
+        $('#answerOne').html(`<input id="${icon1}2" type="radio" name="creditcard" value="He Did" />
+        <label class="drinkcard-cc ${icon1}" for="${icon1}2"></label>`);
+        $('#answerTwo').html(`<input id="${icon2}2" type="radio" name="creditcard" value="He Did" />
+        <label class="drinkcard-cc ${icon2}" for="${icon2}2"></label>`);
+
+
+
+    //    $('#voteContainer').prepend(`<input id="${icon1}2" type="radio" name="creditcard" value="He Did" />
+    //    <label class="drinkcard-cc ${icon1}" for="${icon1}2"></label>`);
+    //    $('#voteContainer').prepend(`<input id="${icon2}2" type="radio" name="creditcard" value="He Did" />
+    //    <label class="drinkcard-cc ${icon2}" for="${icon2}2"></label>`);
+    });
+}
+
 // Send Vote to Host
 function sendVoteToHost() {
     var couple = localStorage.getItem("username");
@@ -43,13 +61,3 @@ function sendVoteToHost() {
     }
 }
 
-function receiveIcons(){
-    connection.on("ReceiveIconId", function (icon1, icon2) {
-        console.log(icon1);
-        console.log(icon2);
-       $('#voteContainer').prepend(`<input id="${icon1}2" type="radio" name="creditcard" value="He Did" />
-       <label class="drinkcard-cc ${icon1}" for="${icon1}2"></label>`);
-       $('#voteContainer').prepend(`<input id="${icon2}2" type="radio" name="creditcard" value="He Did" />
-       <label class="drinkcard-cc ${icon2}" for="${icon2}2"></label>`);
-    });
-}

@@ -11,10 +11,13 @@ $(document).ready(function () {
 		return console.error(err.toString());
 	})
 	.then(function () {
+		listenForVotes();
+	})
+	.then(function() {
 		sendQuestionToClients();
 	})
 	.then(function() {
-		listenForVotes();
+		SendIcons();
 	})
 });
 
@@ -27,6 +30,17 @@ function sendQuestionToClients() {
 		return console.error(err.toString());
 	});
 }
+
+// Send Icons to Clients
+function SendIcons(){
+	console.log("Sending Icons");
+    var icon1 = localStorage.getItem("IconId1");
+    var icon2 = localStorage.getItem("IconId2");
+    connection.invoke("SendIconId", icon1, icon2).catch(function (err) {
+        return console.error(err.toString());
+    });
+}
+
 // Listens for Votes, lists users, increments counters and adds data to graph
 function listenForVotes() {
 	console.log("Listening for Votes");
@@ -109,8 +123,6 @@ function addData(myChart) {
 	myChart.data.datasets[0].data = [
 		$('#answerOneCounter').html(),
 		$('#answerTwoCounter').html()
-		// document.getElementById('answerOneCounter').innerHTML,
-		// document.getElementById('answerTwoCounter').innerHTML
 	];
 	myChart.update();
 }

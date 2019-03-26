@@ -27,12 +27,12 @@ $(document).ready(function () {
   
 
 })
-function SendIcons(){
-    var icon1 = localStorage.getItem("IconId1");
-    var icon2 = localStorage.getItem("IconId2");
-    console.log(icon1);
-    console.log(icon2);
-    connection.invoke("SendIconId", icon1, icon2).catch(function (err) {
-        return console.error(err.toString());
-    });
-}
+
+// // Send Icons to Clients
+// function SendIcons(){
+//     var icon1 = localStorage.getItem("IconId1");
+//     var icon2 = localStorage.getItem("IconId2");
+//     connection.invoke("SendIconId", icon1, icon2).catch(function (err) {
+//         return console.error(err.toString());
+//     });
+// }
