@@ -40,7 +40,7 @@ namespace crowdience.Pages
             GetGame();
             FillOutCoupleVotes();
             IsCoupleOne();
-            Console.WriteLine(Request.Form["CoupleAnswerOne"]);
+            Console.WriteLine(Request.Form["CoupleAnswer"]);
         }
 
         public void GetGame()
@@ -66,32 +66,29 @@ namespace crowdience.Pages
         public void FillOutCoupleVotes()
         {
             TheQuestion = WhichQuestion();
-            Console.WriteLine(TheQuestion.CoupleOneVote);
-            Console.WriteLine(TheQuestion.CoupleTwoVote);
-            if (TheQuestion.CoupleOneVote == "Pending")
+            String CoupleAnswer = Request.Form["CoupleAnswer"];
+            Console.WriteLine(CoupleAnswer);
+            if (IsCoupleOne())
             {
-                TheQuestion.CoupleOneVote = "Couple One Voted";
+                TheQuestion.CoupleOneVote = CoupleAnswer;
                 _context.SaveChanges();
                 Console.WriteLine("First Which Question Check");
 
             }
-            else if (TheQuestion.CoupleOneVote != "Pending" && TheQuestion.CoupleTwoVote == "Pending")
+            else
             {
-                TheQuestion.CoupleTwoVote = "Couple Two Voted";
+                TheQuestion.CoupleTwoVote = CoupleAnswer;
                 _context.SaveChanges();
                 Console.WriteLine("Second Which Question Check");
             }
-            else
-            {
-                Console.WriteLine("Third Which Question Check");
-            }
+            // else
+            // {
+            //     Console.WriteLine("Third Which Question Check");
+            // }
         }
 
         public Question WhichQuestion()
         {
-            // Question WhichQuestion = GetQuestion(Counter);
-            // Console.WriteLine(Counter);
-            // Console.WriteLine(WhichQuestion.QuestionTitle);
             while (Counter <= 5)
             {
                 Question WhichQuestion = GetQuestion(Counter);
