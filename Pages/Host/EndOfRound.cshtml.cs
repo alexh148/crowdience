@@ -16,8 +16,8 @@ namespace crowdience.Pages
 {
     public class HostEndOfRoundModel : PageModel
     {
-        private Question question { get; set;}
-        private Game game {get; set;}
+        private Question question { get; set; }
+        private Game game { get; set; }
         private readonly CrowdienceContext _context;
 
         public HostEndOfRoundModel(CrowdienceContext context)
@@ -29,16 +29,18 @@ namespace crowdience.Pages
         {
             int round = Convert.ToInt32(Request.Query["round"]);
             question = _context.Questions.Find(round);
+            Console.WriteLine(question);
         }
 
         public void GetGame()
         {
             int round = Convert.ToInt32(Request.Query["round"]);
-            game = _context.Games.Find(round);
+            game = _context.Games.Find(1);
         }
         public void OnGet()
         {
             GetQuestion();
+            GetGame();
             SetVariables();
             AudienceLogic();
         }
@@ -55,10 +57,10 @@ namespace crowdience.Pages
             ViewData["answerTwo"] = "answerTwo";
             ViewData["answerOneCounters"] = question.VoteOneTotal;
             ViewData["answerTwoCounters"] = question.VoteTwoTotal;
-            ViewData["groom"] = "game.coupleOneName";
-            ViewData["bride"] = "game.coupleTwoName";
             ViewData["groomAnswer"] = question.CoupleOneVote;
             ViewData["brideAnswer"] = question.CoupleTwoVote;
+            ViewData["groom"] = game.coupleOneName;
+            ViewData["bride"] = game.coupleTwoName;
         }
         public void AudienceLogic()
         {

@@ -1,34 +1,17 @@
 @page
+@model CoupleVoteModel
 <h1 id="questionTitle"></h1>
-<form>
+<form method="post">
     <p>Please select your answer:</p>
     <div id="voteContainer" class="cc-selector-2">
-        <input id="answerOne2" type="radio" name="creditcard" value="He Did" />
-        <label class="drinkcard-cc answerOne" for="answerOne2"></label>
-        <input  checked="checked" id="answerTwo2" type="radio" name="creditcard" value="She Did" />
-        <label class="drinkcard-cc answerTwo"for="answerTwo2"></label>
-        </br>
-        <input type="button" id="vote" value="Vote Now" />
+      <input type="text" id="username" name="username" />
+      <p id="answerOne"></p>
+      <p id="answerTwo"></p>
     </div>  
+    <button type="submit" id="vote">Vote Now!</button>
 </form>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/Couple/voteInterface.js"></script>
-<link rel="stylesheet" type="text/css" href="~/css/icons.css" -->
-
-
-<!-- OLD DIVS BELOW
-<div>
-  <h1 id="questionTitle"></h1>
-  </br>
-  <div id="voteContainer" class="cc-selector" >
-    <input checked="checked" type="radio" name="myResponse" id="answerOne" value="He Did" />
-    <label class="drinkcard-cc answerOne" for="answerOne"></label>
-    </br>
-    <input type="radio" name="myResponse" id="answerTwo" value="She Did" />
-    <label class="drinkcard-cc answerTwo" for="answerOne"></label>
-    </br>
-    <input type="button" id="vote" value="Vote Now" />
-  </div>
-</div> -->
+<link rel="stylesheet" type="text/css" href="~/css/icons.css">

@@ -1,39 +1,19 @@
 "use strict";
-var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
 
+// Defines Hub
+let connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
+
+// Opens Connection to Hub
 connection.start().catch(function (err) {
     return console.error(err.toString());
 });
 
-
+// Get votes from html and display Graph
 $(document).ready(function () {
-    // $("#nextQuestion").click(function () {
-    //     console.log("Next question clicked!");
-    //     var question = document.getElementById("questionTitle").innerHTML;
-    //     console.log(question);
-    //     connection.invoke("SendQuestion", question).catch(function (err) {
-    //         return console.error(err.toString());
-    //     });
-    // })
-    // Old Way!
-    // var answerOneVotes = localStorage.getItem("answerOneVotes");
-    // var answerTwoVotes = localStorage.getItem("answerTwoVotes");
-    // console.log(answerOneVotes);
-    // console.log(answerTwoVotes);
-    // document.getElementById("answerOneFinalCounter").innerHTML = answerOneVotes
-    // document.getElementById("answerTwoFinalCounter").innerHTML = answerTwoVotes;
-
-    // Old Way!
-    var answerOneVotes = document.getElementById("answerOneFinalCounter").innerHTML;
-    var answerTwoVotes = document.getElementById("answerTwoFinalCounter").innerHTML;
-    // var groomName = localStorage.getItem("couplename1")
-    // var groomVote = localStorage.getItem("myResponseId1");
-    // var brideName = localStorage.getItem("couplename2");
-    // var brideVote = localStorage.getItem("myResponseId2");
-    // document.getElementById("groom").innerHTML = groomName;
-    // document.getElementById("groomVote").innerHTML = groomVote;
-    // document.getElementById("bride").innerHTML = brideName;
-    // document.getElementById("brideVote").innerHTML = brideVote;
+    updateResultIcons();
+    // Populated by Razor Page and C# database.
+    var answerOneVotes = $('#answerOneFinalCounter').html();
+    var answerTwoVotes = $('#answerTwoFinalCounter').html();
 
     // Chart
     Chart.defaults.global.defaultFontColor = "white";
@@ -77,3 +57,13 @@ $(document).ready(function () {
         }
     });
 })
+
+// Updates Result Icons
+function updateResultIcons() {
+	var icon1 = localStorage.getItem("IconId1")
+    var icon2 = localStorage.getItem("IconId2")
+    console.log(icon1);
+    console.log(icon2);
+	$('#answerOne').html(`<label class="resultcard-cc ${icon1}" for="${icon1}2"></label>`);
+	$('#answerTwo').html(`<label class="resultcard-cc ${icon2}" for="${icon1}2"></label>`);
+}

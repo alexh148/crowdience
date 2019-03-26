@@ -9,52 +9,49 @@ using System.Web;
 using System.Diagnostics;
 using crowdience.Models;
 using crowdience.Controllers;
+using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
-using System.Collections.Specialized;
+using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Headers;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
+
 
 namespace crowdience.Pages
 {
     public class CoupleLobbyModel : PageModel
     {
+        private Game TheGame { get; set; }
+        private readonly CrowdienceContext _context;
+        public CoupleLobbyModel(CrowdienceContext context)
+        {
+            _context = context;
+        }
         public void OnGet()
         {
-            
-            //ViewData["LobbyTitle"] = "Mega Lobby!";
         }
-         public void OnPost()
+        public void OnPost()
         {
-            // NameValueCollection nvc = Request.Form;
-            // string uid = nvc["uid"];
-            Console.WriteLine("lala");
-            
-           // Response.Redirect($"/Couple/Vote");
+            GetGame();
+            SaveCoupleNameToDb();
+        }
+        public void GetGame()
+        {
+            TheGame = _context.Games.Find(1);
         }
 
-     
+        public void SaveCoupleNameToDb()
+        {
+            string coupleName = Request.Form["username"];
+
+            if (TheGame.coupleOneName == "pending")
+                TheGame.coupleOneName = coupleName;
+            else if (TheGame.coupleTwoName == "pending")
+                TheGame.coupleTwoName = coupleName;
+            else
+                Console.WriteLine("Table full, truncate it!");
+            _context.SaveChanges();
+        }
     }
 }
-
-
-
-
-
-
-
-
-   // public void CheckCouple()
-        // {
-        //    if()
-        //    {
-        //        //fill in couple 1 column
-        //    }
-        //    else
-        //    {
-        //        //fill in couple2 columnt
-        //    }
-        //     //checks if couple one is filled in
-        // }
-
-        // public void InsertByUid(){
-          
-        // }
