@@ -41,6 +41,15 @@
           filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
 
+.votecard-cc {
+  background-size:contain;
+  background-repeat:no-repeat;
+  display:inline-block;
+  width:50px;height:35px;
+  -webkit-transition: all 100ms ease-in;
+     -moz-transition: all 100ms ease-in;
+          transition: all 100ms ease-in;
+}
 /* Extras */
 a:visited{color:#888}
 a{color:#444;text-decoration:none;}

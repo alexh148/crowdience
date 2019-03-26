@@ -60,7 +60,7 @@ function listenForVotes() {
 function listVoters(user, myResponseVal) {
 	var icon = localStorage.getItem(`${myResponseVal}`);
 	console.log(icon);
-	$('#messagesList').prepend(`<li>${user} voted for:<label class="drinkcard-cc ${icon}" for=${icon}2></label></li>`);
+	$('#messagesList').prepend(`<li>${user} voted for:<label class="votecard-cc ${icon}" for=${icon}2></label></li>`);
 }
 
 // HELPER: Increments Span Counters, visible, needed for Display
