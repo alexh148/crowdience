@@ -3,12 +3,16 @@
   <h1 id="questionTitle"></h1>
 
     <p>Please select your answer:</p>
-    <div id="voteContainer" class="cc-selector-2">
+    <div id="voteContainer" style="display:none;" class="cc-selector-2">
       <p id="answerOne"></p>
       <p id="answerTwo"></p>
     <input type="button" id="vote" value="Vote Now" />
   </div>
 
+  <div id="waitingVote" style="display:none;">
+  <h1>Thanks for Voting</h1>
+  </div>
+  
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/Player/voteInterface.js"></script>

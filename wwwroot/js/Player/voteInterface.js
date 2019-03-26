@@ -5,6 +5,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
 
 // Opens Connection to Hub
 connection.start().catch(function (err) {
+    displayforVote();
     return console.error(err.toString());
 });
 
@@ -16,12 +17,14 @@ $(document).ready(function () {
     $('#vote').on('click', function () {
         event.preventDefault();
         sendVoteToHost();
+        displayForWait();
     });
 })
 
 // Listen for Question from Host
 function receiveQuestionFromHost() {
     connection.on("ReceiveQuestion", function (question) {
+        displayforVote();
         $("#questionTitle").html(question);
     });
 }
@@ -55,5 +58,17 @@ function sendVoteToHost() {
         });
     } else {
         return console.log("No response selected.");
+    }
+}
+
+function displayForWait() {
+    if ($('#vote').css('display') != 'none') {
+        $('#waitingVote').show().siblings('div').hide();
+    }
+}
+
+function displayforVote() {
+    if ($('#vote').css('display') != 'none') {
+        $('#voteContainer').show().siblings('div').hide();
     }
 }
