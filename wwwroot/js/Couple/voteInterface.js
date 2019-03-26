@@ -34,13 +34,6 @@ function receiveIcons(){
         <label class="drinkcard-cc ${icon1}" for="${icon1}2"></label>`);
         $('#answerTwo').html(`<input id="${icon2}2" type="radio" name="creditcard" value="He Did" />
         <label class="drinkcard-cc ${icon2}" for="${icon2}2"></label>`);
-
-
-
-    //    $('#voteContainer').prepend(`<input id="${icon1}2" type="radio" name="creditcard" value="He Did" />
-    //    <label class="drinkcard-cc ${icon1}" for="${icon1}2"></label>`);
-    //    $('#voteContainer').prepend(`<input id="${icon2}2" type="radio" name="creditcard" value="He Did" />
-    //    <label class="drinkcard-cc ${icon2}" for="${icon2}2"></label>`);
     });
 }
 
