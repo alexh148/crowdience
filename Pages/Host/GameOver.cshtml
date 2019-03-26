@@ -1,3 +1,78 @@
 @page
-<h1>Looks Like It's Game Over :(</h1>
-<h2>Have You Tried Not Thinking About It?</h2>
+@model HostGameOverModel
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 id="gameOver">
+        GameOver :(
+        <p id="hutntai">Have you tried not thinking about it?</p>
+      </h3>
+      <div class="row">
+        <div class="col-md-4">
+          <h3 id="question">@ViewData["q1Title"]</h3>
+          <p id="answerOneCounterP">
+            <span id="answerOneCounter">@ViewData["q1a1"]</span>
+          </p>
+          <p id="answerTwoCounterP">
+            <span id="answerTwoCounter">@ViewData["q1a2"]</span>
+          </p>
+          <canvas id="bc1" />
+        </div>
+        <div class="col-md-4">
+          <h3 id="question">@ViewData["q2Title"]</h3>
+          <p id="answerOneCounterP">
+            <span id="answerOneCounter">@ViewData["q2a1"]</span>
+          </p>
+          <p id="answerTwoCounterP">
+            <span id="answerTwoCounter">@ViewData["q2a2"]</span>
+          </p>
+          <canvas id="bc2" />
+        </div>
+        <div class="col-md-4">
+          <h3 id="question">@ViewData["q3Title"]</h3>
+          <p id="answerOneCounterP">
+            <span id="answerOneCounter">@ViewData["q3a1"]</span>
+          </p>
+          <p id="answerTwoCounterP">
+            <span id="answerTwoCounter">@ViewData["q3a2"]</span>
+          </p>
+          <canvas id="bc3" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h3 id="question">@ViewData["q4Title"]</h3>
+          <p id="answerOneCounterP">
+            <span id="answerOneCounter">@ViewData["q4a1"]</span>
+          </p>
+          <p id="answerTwoCounterP">
+            <span id="answerTwoCounter">@ViewData["q4a2"]</span>
+          </p>
+          <canvas id="bc4" />
+        </div>
+        <div class="col-md-4">
+          <h3 id="question">Thanks For Playing!</h3>
+          <canvas id="bc1" />
+        </div>
+        <div class="col-md-4">
+          <h3 id="question">@ViewData["q5Title"]</h3>
+          <p id="answerOneCounterP">
+            <span id="answerOneCounter">@ViewData["q5a1"]</span>
+          </p>
+          <p id="answerTwoCounterP">
+            <span id="answerTwoCounter">@ViewData["q5a2"]</span>
+          </p>
+          <canvas id="bc5" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="~/js/Host/gameOver.js"></script>
+<link rel="stylesheet" type="text/css" href="~/css/GameOver.css">

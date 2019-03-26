@@ -90,13 +90,16 @@ function incrementFormCounter(myResponseId) {
 }
 
 // Chart Builder, referenced by myChart.
+var icon1 = localStorage.getItem("IconId1")
+var icon2 = localStorage.getItem("IconId2")
 Chart.defaults.global.defaultFontColor = 'white';
 var ctx = document.getElementById('bar-chart-horizontal');
 ctx.height = 120;
 var myChart = new Chart(ctx, {
 	type: 'horizontalBar',
 	data: {
-		labels: ['Him', 'Her'],
+		labels: [`<label class="votecard-cc ${icon1}" for="${icon1}2"></label>`
+		, `<label class="votecard-cc ${icon2}" for="${icon2}2"></label>`],
 		datasets: [{
 			backgroundColor: ['#3e95cd', '#8e5ea2'],
 			data: [0, 0]
