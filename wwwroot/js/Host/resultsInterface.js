@@ -64,6 +64,7 @@ function listVoters(user, myResponseVal) {
 
 // HELPER: Increments Span Counters, visible, needed for Display
 function incrementSpanCounter(myResponseId) {
+	console.log(`#${myResponseId}Counter`);
 	var counter = $(`#${myResponseId}Counter`).html();
 	counter++;
 	$(`#${myResponseId}Counter`).html(counter);
