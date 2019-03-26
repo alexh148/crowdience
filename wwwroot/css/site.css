@@ -58,30 +58,32 @@ body {
 .startButton {
   width: 280px;
   height: 250px;
-  opacity: .3;
-  transition: opacity .5s ease-out;
   font-size: 26pt;
   border-radius: 50%;
+  background-repeat: no-repeat;
+  color: black;
 }
 
 .startButton:hover {
-  opacity: 1;
+  opacity: .3;
 }
 
 #startAsHost {
-  color: blue;
-  background-image: url(https://i-h1.pinimg.com/474x/43/d2/02/43d20228400b494725a7600b80485e64--bruce-forsyth-family-relations.jpg);
+  background-image: url(https://media1.tenor.com/images/72507f7b18cfd64572bf04dd059728aa/tenor.gif?itemid=5875295);
   max-height: 90%;
+  color: white;
 }
 
 #startAsCouple {
-  color: blue;
-  background-image: url(https://media1.tenor.com/images/767841d169040e265b6752339d7b46cb/tenor.gif?itemid=10321179);
+  background-image: url(https://media.tenor.com/images/003d160afe8049df1d4e6c62f2102c35/tenor.gif);
   max-height: 90%;
+  background-color: white;
+  color: black;
 }
 
 #startAsPlayer {
-  color: blue;
-  background-image: url(https://media.giphy.com/media/8At7p8DapJo40/giphy.gif);
+  background-image: url(https://media1.tenor.com/images/5fcc00b13f626d6e8ada8f614f8ddf3f/tenor.gif?itemid=9247114);
   max-height: 90%;
+  background-color: black;
+  color: #ff9e5b;
 }
