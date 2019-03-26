@@ -17,6 +17,7 @@ $(document).ready(function () {
 
     // Chart
     Chart.defaults.global.defaultFontColor = "white";
+    ctx.height = 50;
     var ctx = document.getElementById("bar-chart-horizontal");
     ctx.height = 120;
     var myChart = new Chart(ctx, {
