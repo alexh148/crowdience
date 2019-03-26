@@ -17,12 +17,14 @@ namespace crowdience
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -43,7 +45,20 @@ namespace crowdience
 
             services.AddSignalR();
 
-            services.AddDbContext<CrowdienceContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            if (Environment.IsDevelopment())
+            {
+                services.AddDbContext<CrowdienceContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            }
+            else
+            {
+                services.AddDbContext<CrowdienceContext>(opt => 
+                {
+                    var connString =
+                    Configuration.GetConnectionString("Data:DefaultConnection:ConnectionString");
+                    opt.UseNpgsql(connString);
+                }
+                );
+            }
 
         }
 
