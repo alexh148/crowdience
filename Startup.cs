@@ -54,7 +54,7 @@ namespace crowdience
                 services.AddDbContext<CrowdienceContext>(opt => 
                 {
                     var connString =
-                    Configuration.GetConnectionString("DefaultConnection");
+                    Configuration.GetConnectionString("ProductionDbConnection");
                     opt.UseNpgsql(connString);
                 }
                 );
