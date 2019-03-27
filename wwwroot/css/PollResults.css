@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Bangers|Carter+One|Dancing+Script|Indie+Flower|Over+the+Rainbow");
 
-body {
+/* body {
   font-family: "indie";
   color: #3d1b08;
   background-color: #e7e1c3;
-}
+} */
 
 #questionTitle {
   font-size: 350%;
@@ -25,6 +25,7 @@ body {
   font-size: 250%;
   padding: 15px;
   border-radius: 25%;
+  color: #fff
 }
 
 #answerOneCounter, #answerOneFinalCounter {
@@ -87,7 +88,7 @@ body {
 
 .btn-primary {
   color: #fff;
-  background-color: #ff7d00;
+  background-color: #070707;
   border-color: #171504;
 }
 
