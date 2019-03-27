@@ -14,6 +14,7 @@ $(document).ready(function () {
     receiveQuestionFromHost();
     receiveIconsFromHost();
     receiveReturnToLobby();
+    receiveGameOver();
     $('#vote').on('click', function () {
         // event.preventDefault();
         sendVoteToHost();
@@ -47,6 +48,15 @@ function receiveReturnToLobby() {
         $(location).attr('href', '/Couple/Lobby');
     });
 }
+
+// Listen for Gane Over
+function receiveGameOver() {
+    connection.on("ReceiveGameOver", function() {
+        console.log("Received Game Over");
+        $(location).attr('href', '/Player/GameOver');
+    });
+}
+
 
 // Send Vote to Host
 function sendVoteToHost() {

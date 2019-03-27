@@ -8,12 +8,13 @@ connection.start().catch(function (err) {
     return console.error(err.toString());
 });
 
-// When Document loads listen for Question from Host
+// When Document loads open up Receive Requests
 // When Vote is clicked send Vote to Host
 $(document).ready(function () {
     receiveQuestionFromHost();
     receiveIconsFromHost();
     receiveReturnToLobby();
+    receiveGameOver();
     $('#vote').on('click', function () {
         event.preventDefault();
         sendVoteToHost();
@@ -46,6 +47,14 @@ function receiveReturnToLobby() {
         console.log("RecievedReturnToLobby");
         localStorage.clear();
         $(location).attr('href', '/Player/Lobby');
+    });
+}
+
+// Listen for Gane Over
+function receiveGameOver() {
+    connection.on("ReceiveGameOver", function() {
+        console.log("Received Game Over");
+        $(location).attr('href', '/Player/GameOver');
     });
 }
 
