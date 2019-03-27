@@ -24,7 +24,7 @@
 }
 
 #q1a2, #q2a2, #q3a2, #q4a2, #q5a2 {
-  border: 3px solid #400b4c;
+  border: zr3px solid #400b4c;
   background-color: #8e5ea2;
 }
 
@@ -69,4 +69,12 @@ iframe {
     font-size: 200%;
     margin-top: 30px;
     width: 100%;
+}
+
+#gameOver {
+    text-align: center;
+}
+
+#gameOverPageMessageOne {
+    text-decoration: underline;
 }
