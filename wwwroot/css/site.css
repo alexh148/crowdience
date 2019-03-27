@@ -39,6 +39,7 @@ button.accept-policy {
 html {
   position: relative;
   min-height: 100%;
+  padding: 100px;
 }
 
 body {
@@ -86,4 +87,8 @@ body {
   max-height: 90%;
   background-color: black;
   color: #ff9e5b;
+}
+
+#startBdiv {
+  padding:80px 5px 15px 100px;
 }
