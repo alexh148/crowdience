@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Bangers|Carter+One|Dancing+Script|Indie+Flower|Over+the+Rainbow");
 
 body {
-  font-family: "Bangers", cursive;
-  color: white;
-  background-color: #262626;
+  font-family: "indie";
+  color: #3d1b08;
+  background-color: #e7e1c3;
 }
 
 #questionTitle {
@@ -82,5 +82,11 @@ body {
 
 #joinGame {
   margin: 15px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #ff7d00;
+  border-color: #171504;
 }
 
