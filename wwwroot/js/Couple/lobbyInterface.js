@@ -27,6 +27,11 @@ $(document).ready(function () {
     });
 })
 
+// $(document).on('submit',function(e){
+//     e.preventDefault();
+//     showWaitingRoom();
+//  });
+
 // Hides Lobby, shows Waiting Room
 function showWaitingRoom() {
     if ($('#lobby').css('display') != 'none') {

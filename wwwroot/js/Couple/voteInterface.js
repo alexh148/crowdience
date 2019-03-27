@@ -33,10 +33,12 @@ function receiveQuestionFromHost() {
 function receiveIconsFromHost(){
     console.log("Receiving Icons");
     connection.on("ReceiveIconId", function (icon1, icon2) {
+        $('#message').html("Please select your answer:")
         $('#answerOne').html(`<input id="${icon1}2" type="radio" name="CoupleAnswer" value="${icon1}" />
         <label class="drinkcard-cc ${icon1}" for="${icon1}2"></label>`);
         $('#answerTwo').html(`<input id="${icon2}2" type="radio" name="CoupleAnswer" value="${icon2}" />
         <label class="drinkcard-cc ${icon2}" for="${icon2}2"></label>`);
+        $('#button').html(`<button type="submit" id="vote">Vote Now!</button>`);
     });
 }
 

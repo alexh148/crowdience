@@ -38,10 +38,14 @@ function listVoters(user, myResponseVal) {
 
 // Listens for connecting couples, displays them in list.
 function recieveAndDisplayConnectingCouple() {
+  var count = $("#joinedCouple").children().length;
+  console.log(count);
+  if (count <= 2) {
   connection.on("ReceiveCouple", function(user) {
     var joinedCouple = user + " joined the game!";
     $('#joinedCouple').prepend(`<li>${joinedCouple}</li>`);
-  });
+  })
+};
 }
 
 

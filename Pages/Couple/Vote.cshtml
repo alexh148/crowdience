@@ -2,13 +2,13 @@
 @model CoupleVoteModel
 <h1 id="questionTitle"></h1>
 <form method="post">
-    <p>Please select your answer:</p>
+    <p id="message">Waiting for next question to load!</p>
     <div id="voteContainer" class="cc-selector-2">
       <input type="hidden" id="username" name="username" />
       <p id="answerOne"></p>
       <p id="answerTwo"></p>
+    <p id="button"></p>
     </div>  
-    <button type="submit" id="vote">Vote Now!</button>
 </form>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
