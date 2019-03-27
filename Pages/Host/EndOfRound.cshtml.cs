@@ -66,19 +66,11 @@ namespace crowdience.Pages
         {
             if (question.CoupleOneVote == question.CoupleTwoVote)
             {
-                if ((question.VoteOneTotal > question.VoteTwoTotal && question.CoupleOneVote == "answerOne")
-                    || (question.VoteOneTotal < question.VoteTwoTotal && question.CoupleOneVote == "answerTwo"))
-                {
-                    ViewData["audience"] = "Correct! :D";
-                }
-                else
-                {
-                    ViewData["audience"] = "Wrong! :(";
-                }
+                ViewData["audience"] = "Couple agree!";
             }
             else
             {
-                ViewData["audience"] = "Bride and Groom couldn't agree!";
+                ViewData["audience"] = "Couple couldn't agree!";
             }
         }
     }
