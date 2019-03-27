@@ -1,0 +1,44 @@
+#gameOver {
+    text-align: center;
+    font-size: 500%;
+}
+  
+#question {
+    text-align: center;
+}
+  
+  #hutntai {
+    font-size: 30px;
+}
+
+#q1a1, #q2a1, #q3a1, #q4a1, #q5a1,
+#q1a2, #q2a2, #q3a2, #q4a2, #q5a2 {
+  font-size: 75%;
+  padding: 10px;
+  border-radius: 25%;
+}
+
+#q1a1, #q2a1, #q3a1, #q4a1, #q5a1 {
+  border: 3px solid #1a4791;
+  background-color: #3e95cd;
+}
+
+#q1a2, #q2a2, #q3a2, #q4a2, #q5a2 {
+  border: 3px solid #400b4c;
+  background-color: #8e5ea2;
+}
+
+p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#q1a1Icon, #q1a2Icon,
+#q2a1Icon, #q2a2Icon,
+#q3a1Icon, #q3a2Icon,
+#q4a1Icon, #q4a2Icon,
+#q5a1Icon, #q5a2Icon {
+    margin: 0px;
+}

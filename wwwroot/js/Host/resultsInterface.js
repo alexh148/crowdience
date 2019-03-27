@@ -90,6 +90,8 @@ function incrementFormCounter(myResponseId) {
 }
 
 // Chart Builder, referenced by myChart.
+var icon1 = localStorage.getItem("IconId1")
+var icon2 = localStorage.getItem("IconId2")
 Chart.defaults.global.defaultFontColor = 'white';
 var ctx = document.getElementById('bar-chart-horizontal');
 ctx.height = 120;

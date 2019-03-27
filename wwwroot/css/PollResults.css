@@ -18,7 +18,6 @@ body {
   font-size: 150%;
 }
 
-#answerOneCounter,
 #answerTwoCounter, 
 #answerOneFinalCounter,
 #answerTwoFinalCounter {
@@ -36,6 +35,7 @@ body {
   border: 3px solid #400b4c;
   background-color: #8e5ea2;
 }
+
 #messagesList {
   max-height: 85vh;
   overflow: hidden;
