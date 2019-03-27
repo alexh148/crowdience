@@ -1,7 +1,29 @@
+// Defines Hub
+let connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
+
+// Opens Connection to Hub
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
+
 $(document).ready(function () {
     updateResultIcons();
+    $('#newGame').on('click', function () {
+      event.preventDefault();
+      localStorage.clear();
+      returnClientsToLobbies();
+      $(location).attr('href', '/Host/');
+  });
 
 })
+
+// Returns all cleints to their respective Lobbys
+function returnClientsToLobbies() {
+  console.log("Return Clients");
+  connection.invoke('ReturnToLobby').catch(function (err) {
+    return console.error(err.toString());
+  });
+}
 
 // Updates Result Icons
 function updateResultIcons() {
@@ -27,6 +49,7 @@ var ctx3 = $('#bc3')[0];
 var ctx4 = $('#bc4')[0];
 var ctx5 = $('#bc5')[0];
 
+// Construct 5 graphs and assign to each ctx based on Counter Information
 for (var i = 1; i <= 5; i++) {
   var myChart = new Chart(window["ctx" + i], {
     type: "horizontalBar",
