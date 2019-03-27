@@ -5,7 +5,6 @@ var connection = new signalR.HubConnectionBuilder().withUrl('/pollHub').build();
 
 // Opens Connection to Hub
 connection.start().catch(function(err) {
-	displayforVote();
 	return console.error(err.toString());
 });
 
@@ -26,7 +25,7 @@ $(document).ready(function() {
 // Listen for Question from Host
 function receiveQuestionFromHost() {
 	connection.on('ReceiveQuestion', function(question) {
-		displayforVote();
+		displayForVote();
 		$('#questionTitle').html(question);
 	});
 }
@@ -61,12 +60,12 @@ function receiveGameOver() {
 	});
 }
 
-// Listen for Question from Host
-function receiveQuestionFromHost() {
-	connection.on('ReceiveQuestion', function(question) {
-		$('#questionTitle').html(question);
-	});
-}
+// // Listen for Question from Host
+// function receiveQuestionFromHost() {
+// 	connection.on('ReceiveQuestion', function(question) {
+// 		$('#questionTitle').html(question);
+// 	});
+// }
 
 // Send Vote to Host
 function sendVoteToHost() {
@@ -88,13 +87,11 @@ function sendVoteToHost() {
 }
 
 function displayForWait() {
-	if ($('#vote').css('display') != 'none') {
-		$('#waitingVote').show().siblings('div').hide();
-	}
+	$('#voteContainer').hide();
+	$('#waitingVote').show();
 }
 
-function displayforVote() {
-	if ($('#vote').css('display') != 'none') {
-		$('#voteContainer').show().siblings('div').hide();
-	}
+function displayForVote() {
+	$('#waitingVote').hide();
+	$('#voteContainer').show();
 }
