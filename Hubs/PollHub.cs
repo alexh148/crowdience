@@ -42,5 +42,10 @@ namespace crowdience.Hubs
             await Clients.All.SendAsync("ReceiveReturnToLobby");
         }
 
+        public async Task SendGameOver()
+        {
+            await Clients.All.SendAsync("ReceiveGameOver");
+        }
+
     }
 }

@@ -14,6 +14,7 @@ $(document).ready(function() {
 	receiveQuestionFromHost();
 	receiveIconsFromHost();
 	receiveReturnToLobby();
+	receiveGameOver();
 	$('#vote').on('click', function() {
 		// event.preventDefault();
 		connection.invoke('SendCoupleVote').catch(function(err) {
@@ -48,4 +49,29 @@ function receiveReturnToLobby() {
 		sessionStorage.clear();
 		$(location).attr('href', '/Couple/Lobby');
 	});
+}
+
+// Listen for Gane Over
+function receiveGameOver() {
+	connection.on('ReceiveGameOver', function() {
+		console.log('Received Game Over');
+		$(location).attr('href', '/Player/GameOver');
+	});
+}
+
+// Send Vote to Host
+function sendVoteToHost() {
+	var couple = sessionStorage.getItem('username');
+	// If something is selected
+	if ($('input:radio[name=myResponse]').is(':checked')) {
+		// Assign Values
+		var myResponseId = $('input[name=myResponse]:checked').attr('id');
+		var myResponseVal = $('input[name=myResponse]:checked').val();
+		// Broadcast to Host
+		connection.invoke('SendCoupleVote', couple, myResponseId, myResponseVal).catch(function(err) {
+			return console.error(err.toString());
+		});
+	} else {
+		return console.log('No response selected.');
+	}
 }

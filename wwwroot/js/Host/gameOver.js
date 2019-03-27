@@ -1,13 +1,21 @@
 // Defines Hub
 let connection = new signalR.HubConnectionBuilder().withUrl('/pollHub').build();
 
-// Opens Connection to Hub
-connection.start().catch(function(err) {
-	return console.error(err.toString());
-});
-
+// On load:
+// Open connection to hub, update Icons and forward all clients to GameOver
 $(document).ready(function() {
-	updateResultIcons();
+	connection
+		.start()
+		.catch(function(err) {
+			return console.error(err.toString());
+		})
+		.then(function() {
+			updateResultIcons();
+		})
+		.then(function() {
+			sendGameOver();
+		});
+
 	$('#newGame').on('click', function() {
 		event.preventDefault();
 		sessionStorage.clear();
@@ -20,6 +28,14 @@ $(document).ready(function() {
 function returnClientsToLobbies() {
 	console.log('Return Clients');
 	connection.invoke('ReturnToLobby').catch(function(err) {
+		return console.error(err.toString());
+	});
+}
+
+// Forwards Clients on to their respective Game Overs
+function sendGameOver() {
+	console.log('Game Over Clients');
+	connection.invoke('SendGameOver').catch(function(err) {
 		return console.error(err.toString());
 	});
 }
