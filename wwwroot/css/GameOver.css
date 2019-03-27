@@ -42,3 +42,31 @@ p {
 #q5a1Icon, #q5a2Icon {
     margin: 0px;
 }
+
+.resultOne {
+    border: 3px solid gold;
+}
+.resultTwo {
+    border: 3px solid blue;
+}
+.resultThree {
+    border: 3px solid green;
+}
+.resultFour {
+    border: 3px solid red;
+}
+.resultFive {
+    border: 3px solid purple;
+}
+
+iframe {
+    width: 100%;
+    pointer-events: none;
+    margin: 0px;
+}
+
+#newGame {
+    font-size: 200%;
+    margin-top: 30px;
+    width: 100%;
+}

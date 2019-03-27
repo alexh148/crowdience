@@ -8,47 +8,140 @@
         <p id="hutntai">Have you tried not thinking about it?</p>
       </h3>
       <div class="row">
-        <div class="col-md-4">
-          <h3 id="question">@ViewData["q1Title"]</h3>
-          <p id="q1a1Icon"><p id="a1Container"><span id="q1a1">@ViewData["q1a1"]</span></p></p>
-          <p id="q1a2Icon"><p id="a2Container"><span id="q1a2">@ViewData["q1a2"]</span></p></p>
-          <canvas id="bc1" />
-          
+        <div class="col-md-4 resultOne">
+          <h3 id="question">Q1: @ViewData["q1Title"]</h3>
+          <h5 id="audience">The Audience said...</h5>
+          <p id="q1a1Icon">
+            <p id="a1Container">
+              <span id="q1a1">@ViewData["q1a1"]</span>
+            </p>
+          </p>
+          <p id="q1a2Icon">
+            <p id="a2Container">
+              <span id="q1a2">@ViewData["q1a2"]</span>
+            </p>
+          </p>
+          <canvas id="bc1"></canvas>
+          <h5 id="couple">The Couple said...</h5>
+          <p id="coupleOne">
+            @ViewData["CoupleOneName"]:
+            <label class="votecard-cc @ViewData["q1c1vote"]" for="@ViewData["q1c1vote"]" />
+          </p>
+          <p id="coupleTwo">
+            @ViewData["CoupleTwoName"]:
+            <label class="votecard-cc @ViewData["q1c2vote"]" for="@ViewData["q1c2vote"]" />
+          </p>
         </div>
-        <div class="col-md-4">
-          <h3 id="question">@ViewData["q2Title"]</h3>
-          <p id="q2a1Icon"><p id="a1Container"><span id="q2a1">@ViewData["q2a1"]</span></p></p>
-          <p id="q2a2Icon"><p id="a2Container"><span id="q2a2">@ViewData["q2a2"]</span></p></p>
-          <canvas id="bc2" />
+        <div class="col-md-4 resultTwo">
+          <h3 id="question">Q2: @ViewData["q2Title"]</h3>
+          <h5 id="audience">The Audience said...</h5>
+          <p id="q2a1Icon">
+            <p id="a1Container">
+              <span id="q2a1">@ViewData["q2a1"]</span>
+            </p>
+          </p>
+          <p id="q2a2Icon">
+            <p id="a2Container">
+              <span id="q2a2">@ViewData["q2a2"]</span>
+            </p>
+          </p>
+          <canvas id="bc2"></canvas>
+          <h5 id="couple">The Couple said...</h5>
+          <p id="coupleOne">
+            @ViewData["CoupleOneName"]:
+            <label class="votecard-cc @ViewData["q2c1vote"]" for="@ViewData["q2c1vote"]" />
+          </p>
+          <p id="coupleTwo">
+            @ViewData["CoupleTwoName"]:
+            <label class="votecard-cc @ViewData["q2c2vote"]" for="@ViewData["q2c2vote"]" />
+          </p>
         </div>
-        <div class="col-md-4">
-          <h3 id="question">@ViewData["q3Title"]</h3>
-          <p id="q3a1Icon"><p id="a1Container"><span id="q3a1">@ViewData["q3a1"]</span></p></p>
-          <p id="q3a2Icon"><p id="a2Container"><span id="q3a2">@ViewData["q3a2"]</span></p></p>
-          <canvas id="bc3" />
+        <div class="col-md-4 resultThree">
+          <h3 id="question">Q3: @ViewData["q3Title"]</h3>
+          <h5 id="audience">The Audience said...</h5>
+
+          <p id="q3a1Icon">
+            <p id="a1Container">
+              <span id="q3a1">@ViewData["q3a1"]</span>
+            </p>
+          </p>
+          <p id="q3a2Icon">
+            <p id="a2Container">
+              <span id="q3a2">@ViewData["q3a2"]</span>
+            </p>
+          </p>
+          <canvas id="bc3"></canvas>
+          <h5 id="couple">The Couple said...</h5>
+          <p id="coupleOne">
+            @ViewData["CoupleOneName"]:
+            <label class="votecard-cc @ViewData["q3c1vote"]" for="@ViewData["q3c1vote"]" />
+          </p>
+          <p id="coupleTwo">
+            @ViewData["CoupleTwoName"]:
+            <label class="votecard-cc @ViewData["q3c2vote"]" for="@ViewData["q3c2vote"]" />
+          </p>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
-          <h3 id="question">@ViewData["q4Title"]</h3>
-          <p id="q4a1Icon"><p id="a1Container"><span id="q4a1">@ViewData["q4a1"]</span></p></p>
-          <p id="q4a2Icon"><p id="a2Container"><span id="q4a2">@ViewData["q4a2"]</span></p></p>
-          <canvas id="bc4" />
+        <div class="col-md-4 resultFour">
+          <h3 id="question">Q4: @ViewData["q4Title"]</h3>
+          <h5 id="audience">The Audience said...</h5>
+
+          <p id="q4a1Icon">
+            <p id="a1Container">
+              <span id="q4a1">@ViewData["q4a1"]</span>
+            </p>
+          </p>
+          <p id="q4a2Icon">
+            <p id="a2Container">
+              <span id="q4a2">@ViewData["q4a2"]</span>
+            </p>
+          </p>
+          <canvas id="bc4"></canvas>
+          <h5 id="couple">The Couple said...</h5>
+          <p id="coupleOne">
+            @ViewData["CoupleOneName"]:
+            <label class="votecard-cc @ViewData["q4c1vote"]" for="@ViewData["q4c1vote"]" />
+          </p>
+          <p id="coupleTwo">
+            @ViewData["CoupleTwoName"]:
+            <label class="votecard-cc @ViewData["q4c2vote"]" for="@ViewData["q4c2vote"]" />
+          </p>
         </div>
         <div class="col-md-4">
           <h3 id="question">Thanks For Playing!</h3>
-          <canvas id="bc1" />
+          <iframe src="https://giphy.com/embed/2xIOiAPXonois" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <button id="newGame" class="btn btn-success">New Game</button>
         </div>
-        <div class="col-md-4">
-          <h3 id="question">@ViewData["q5Title"]</h3>
-          <p id="q5a1Icon"><p id="a1Container"><span id="q5a1">@ViewData["q5a1"]</span></p></p>
-          <p id="q5a2Icon"><p id="a2Container"><span id="q5a2">@ViewData["q5a2"]</span></p></p>
-          <canvas id="bc5" />
+        <div class="col-md-4 resultFive">
+          <h3 id="question">Q5: @ViewData["q5Title"]</h3>
+          <h5 id="audience">The Audience said...</h5>
+          <p id="q5a1Icon">
+            <p id="a1Container">
+              <span id="q5a1">@ViewData["q5a1"]</span>
+            </p>
+          </p>
+          <p id="q5a2Icon">
+            <p id="a2Container">
+              <span id="q5a2">@ViewData["q5a2"]</span>
+            </p>
+          </p>
+          <canvas id="bc5"></canvas>
+          <h5 id="couple">The Couple said...</h5>
+          <p id="coupleOne">
+            @ViewData["CoupleOneName"]:
+            <label class="votecard-cc @ViewData["q5c1vote"]" for="@ViewData["q5c1vote"]" />
+          </p>
+          <p id="coupleTwo">
+            @ViewData["CoupleTwoName"]:
+            <label class="votecard-cc @ViewData["q5c2vote"]" for="@ViewData["q5c2vote"]" />
+          </p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
