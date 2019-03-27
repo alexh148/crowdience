@@ -30,8 +30,8 @@ $(document).ready(function() {
 
 // Updates Result Icons
 function updateResultIcons() {
-	var icon1 = localStorage.getItem('IconId1');
-	var icon2 = localStorage.getItem('IconId2');
+	var icon1 = sessionStorage.getItem('IconId1');
+	var icon2 = sessionStorage.getItem('IconId2');
 	$('#answerOne').html(`<label class="resultcard-cc ${icon1}" for="${icon1}2"></label>`);
 	$('#answerTwo').html(`<label class="resultcard-cc ${icon2}" for="${icon1}2"></label>`);
 }
@@ -49,8 +49,8 @@ function sendQuestionToClients() {
 // Send Icons to Clients
 function SendIcons() {
 	console.log('Sending Icons');
-	var icon1 = localStorage.getItem('IconId1');
-	var icon2 = localStorage.getItem('IconId2');
+	var icon1 = sessionStorage.getItem('IconId1');
+	var icon2 = sessionStorage.getItem('IconId2');
 	connection.invoke('SendIconId', icon1, icon2).catch(function(err) {
 		return console.error(err.toString());
 	});
@@ -85,7 +85,7 @@ function showViewResultsButton() {
 }
 // HELPER: Lists player names and votes in list.
 function listVoters(user, myResponseVal) {
-	var icon = localStorage.getItem(`${myResponseVal}`);
+	var icon = sessionStorage.getItem(`${myResponseVal}`);
 	console.log(icon);
 	$('#messagesList').prepend(`<li>${user} voted for:<label class="votecard-cc ${icon}" for=${icon}2></label></li>`);
 }
@@ -106,8 +106,8 @@ function incrementFormCounter(myResponseId) {
 }
 
 // Chart Builder, referenced by myChart.
-var icon1 = localStorage.getItem('IconId1');
-var icon2 = localStorage.getItem('IconId2');
+var icon1 = sessionStorage.getItem('IconId1');
+var icon2 = sessionStorage.getItem('IconId2');
 Chart.defaults.global.defaultFontColor = 'white';
 var ctx = $('#bar-chart-horizontal')[0];
 ctx.height = 120;

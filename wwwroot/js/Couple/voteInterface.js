@@ -20,7 +20,7 @@ $(document).ready(function() {
 			return console.error(err.toString());
 		});
 	});
-	$('#username').val(localStorage.getItem('username'));
+	$('#username').val(sessionStorage.getItem('username'));
 });
 
 // Listen for Question from Host
@@ -45,7 +45,7 @@ function receiveIconsFromHost() {
 function receiveReturnToLobby() {
 	connection.on('ReceiveReturnToLobby', function() {
 		console.log('RecievedReturnToLobby');
-		localStorage.clear();
+		sessionStorage.clear();
 		$(location).attr('href', '/Couple/Lobby');
 	});
 }
