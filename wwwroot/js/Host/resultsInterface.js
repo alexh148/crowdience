@@ -1,61 +1,65 @@
 'use strict';
 
 // Defines Hub
-var connection = new signalR.HubConnectionBuilder().withUrl("/pollHub").build();
+var connection = new signalR.HubConnectionBuilder().withUrl('/pollHub').build();
 
 // Open Connection, then Sends Question and Listen for Votes
-$(document).ready(function () {
+$(document).ready(function() {
+	var counter = 0;
 	connection
-	.start()
-	.catch(function (err) {
-		return console.error(err.toString());
-	})
-	.then(function() {
-		updateResultIcons();
-	})
-	.then(function() {
-		listenForVotes();
-	})
-	.then(function() {
-		sendQuestionToClients();
-	})
-	.then(function() {
-		SendIcons();
-	})
+		.start()
+		.catch(function(err) {
+			return console.error(err.toString());
+		})
+		.then(function() {
+			updateResultIcons();
+		})
+		.then(function() {
+			listenForVotes();
+		})
+		.then(function() {
+			sendQuestionToClients();
+		})
+		.then(function() {
+			SendIcons();
+		})
+		.then(function() {
+			listenForCoupleVotes(counter);
+		});
 });
 
 // Updates Result Icons
 function updateResultIcons() {
-	var icon1 = localStorage.getItem("IconId1")
-	var icon2 = localStorage.getItem("IconId2")
+	var icon1 = localStorage.getItem('IconId1');
+	var icon2 = localStorage.getItem('IconId2');
 	$('#answerOne').html(`<label class="resultcard-cc ${icon1}" for="${icon1}2"></label>`);
 	$('#answerTwo').html(`<label class="resultcard-cc ${icon2}" for="${icon1}2"></label>`);
 }
 
 // Sends Question To All Clients
 function sendQuestionToClients() {
-	console.log("Sending Question");
+	console.log('Sending Question');
 	var question = $('#questionTitle').html();
 	console.log(`${question} send`);
-	connection.invoke('SendQuestion', question).catch(function (err) {
+	connection.invoke('SendQuestion', question).catch(function(err) {
 		return console.error(err.toString());
 	});
 }
 
 // Send Icons to Clients
-function SendIcons(){
-	console.log("Sending Icons");
-    var icon1 = localStorage.getItem("IconId1");
-    var icon2 = localStorage.getItem("IconId2");
-    connection.invoke("SendIconId", icon1, icon2).catch(function (err) {
-        return console.error(err.toString());
-    });
+function SendIcons() {
+	console.log('Sending Icons');
+	var icon1 = localStorage.getItem('IconId1');
+	var icon2 = localStorage.getItem('IconId2');
+	connection.invoke('SendIconId', icon1, icon2).catch(function(err) {
+		return console.error(err.toString());
+	});
 }
 
 // Listens for Votes, lists users, increments counters and adds data to graph
 function listenForVotes() {
-	console.log("Listening for Votes");
-	connection.on('ReceiveMessage', function (user, myResponseId, myResponseVal) {
+	console.log('Listening for Votes');
+	connection.on('ReceiveMessage', function(user, myResponseId, myResponseVal) {
 		// Add Users to Voting List
 		listVoters(user, myResponseVal);
 		// Increment Span Counter
@@ -67,6 +71,18 @@ function listenForVotes() {
 	});
 }
 
+function listenForCoupleVotes(counter) {
+	connection.on('ReceiveCoupleVote', function() {
+		counter += 1;
+		if (counter == 2) {
+			showViewResultsButton();
+		}
+	});
+}
+
+function showViewResultsButton() {
+	$('#addDiv').show();
+}
 // HELPER: Lists player names and votes in list.
 function listVoters(user, myResponseVal) {
 	var icon = localStorage.getItem(`${myResponseVal}`);
@@ -90,19 +106,21 @@ function incrementFormCounter(myResponseId) {
 }
 
 // Chart Builder, referenced by myChart.
-var icon1 = localStorage.getItem("IconId1")
-var icon2 = localStorage.getItem("IconId2")
+var icon1 = localStorage.getItem('IconId1');
+var icon2 = localStorage.getItem('IconId2');
 Chart.defaults.global.defaultFontColor = 'white';
-var ctx = $("#bar-chart-horizontal")[0];
+var ctx = $('#bar-chart-horizontal')[0];
 ctx.height = 120;
 var myChart = new Chart(ctx, {
 	type: 'horizontalBar',
 	data: {
-		labels: ['Him', 'Her'],
-		datasets: [{
-			backgroundColor: ['#3e95cd', '#8e5ea2'],
-			data: [0, 0]
-		}]
+		labels: [ 'Him', 'Her' ],
+		datasets: [
+			{
+				backgroundColor: [ '#3e95cd', '#8e5ea2' ],
+				data: [ 0, 0 ]
+			}
+		]
 	},
 	options: {
 		legend: {
@@ -113,31 +131,32 @@ var myChart = new Chart(ctx, {
 			scaleStartValue: 0
 		},
 		scales: {
-			xAxes: [{
-				gridLines: {
-					color: '#262626'
-				},
-				stacked: true,
-				ticks: {
-					min: 0 // minimum value
+			xAxes: [
+				{
+					gridLines: {
+						color: '#262626'
+					},
+					stacked: true,
+					ticks: {
+						min: 0 // minimum value
+					}
 				}
-			}],
-			yAxes: [{
-				categoryPercentage: 1.0,
-				barPercentage: 1.0,
-				gridLines: {
-					color: '#262626'
+			],
+			yAxes: [
+				{
+					categoryPercentage: 1.0,
+					barPercentage: 1.0,
+					gridLines: {
+						color: '#262626'
+					}
 				}
-			}]
+			]
 		}
 	}
 });
 
 // HELPER: Adds data to Chart
 function addData(myChart) {
-	myChart.data.datasets[0].data = [
-		$('#answerOneCounter').html(),
-		$('#answerTwoCounter').html()
-	];
+	myChart.data.datasets[0].data = [ $('#answerOneCounter').html(), $('#answerTwoCounter').html() ];
 	myChart.update();
 }

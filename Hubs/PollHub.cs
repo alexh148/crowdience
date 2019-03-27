@@ -9,9 +9,9 @@ namespace crowdience.Hubs
         {
             await Clients.All.SendAsync("ReceiveCouple", couple);
         }
-        public async Task SendCoupleVote(string couple, string responseID, string responseVal)
+        public async Task SendCoupleVote()
         {
-            await Clients.All.SendAsync("ReceiveCoupleVote", couple, responseID, responseVal);
+            await Clients.All.SendAsync("ReceiveCoupleVote");
         }
         
         public async Task SendUser(string user)
