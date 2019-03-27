@@ -14,6 +14,7 @@ connection.start().catch(function (err) {
 $(document).ready(function () {
     receiveQuestionFromHost();
     receiveIconsFromHost();
+    receiveReturnToLobby();
     $('#vote').on('click', function () {
         event.preventDefault();
         sendVoteToHost();
@@ -41,6 +42,23 @@ function receiveIconsFromHost(){
         console.log(icon2);
     });
 }
+
+// Listen for Return to Lobby
+function receiveReturnToLobby() {
+    connection.on("ReceiveReturnToLobby", function() {
+        console.log("RecievedReturnToLobby");
+        localStorage.clear();
+        $(location).attr('href', '/Player/Lobby');
+    });
+}
+
+// Listen for Question from Host
+function receiveQuestionFromHost() {
+    connection.on("ReceiveQuestion", function (question) {
+        $("#questionTitle").html(question);
+    });
+}
+
 
 // Send Vote to Host
 function sendVoteToHost() {

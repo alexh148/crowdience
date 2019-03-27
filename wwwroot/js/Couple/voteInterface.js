@@ -12,7 +12,8 @@ connection.start().catch(function (err) {
 // When Vote is clicked send Vote to Host
 $(document).ready(function () {
     receiveQuestionFromHost();
-    receiveIcons();
+    receiveIconsFromHost();
+    receiveReturnToLobby();
     $('#vote').on('click', function () {
         // event.preventDefault();
         sendVoteToHost();
@@ -28,13 +29,22 @@ function receiveQuestionFromHost() {
 }
 
 // Listen for Icons from Host
-function receiveIcons(){
+function receiveIconsFromHost(){
     console.log("Receiving Icons");
     connection.on("ReceiveIconId", function (icon1, icon2) {
         $('#answerOne').html(`<input id="${icon1}2" type="radio" name="CoupleAnswer" value="${icon1}" />
         <label class="drinkcard-cc ${icon1}" for="${icon1}2"></label>`);
         $('#answerTwo').html(`<input id="${icon2}2" type="radio" name="CoupleAnswer" value="${icon2}" />
         <label class="drinkcard-cc ${icon2}" for="${icon2}2"></label>`);
+    });
+}
+
+// Listen for Return to Lobby
+function receiveReturnToLobby() {
+    connection.on("ReceiveReturnToLobby", function() {
+        console.log("RecievedReturnToLobby");
+        localStorage.clear();
+        $(location).attr('href', '/Couple/Lobby');
     });
 }
 

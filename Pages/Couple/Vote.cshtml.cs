@@ -35,25 +35,44 @@ namespace crowdience.Pages
         public void OnGet()
         {
         }
+
         public void OnPost()
         {
             GetGame();
-            FillOutCoupleVotes();
-            IsCoupleOne();
-            Console.WriteLine(Request.Form["CoupleAnswer"]);
+            AddCoupleVotesToDb();
         }
 
+        // Gets the Game from the dB
         public void GetGame()
         {
             TheGame = _context.Games.Find(1);
         }
-        public Question GetQuestion(int questionNumber)
+
+
+        // Adds couple vote to db, checks question and which couple is voting
+        public void AddCoupleVotesToDb()
         {
-            // Find is working
-            return _context.Questions.Find(questionNumber);
+            TheQuestion = WhichQuestionToUse();
+            String CoupleAnswer = Request.Form["CoupleAnswer"];
+            if (IsCoupleOne())
+                TheQuestion.CoupleOneVote = CoupleAnswer;
+
+            else
+                TheQuestion.CoupleTwoVote = CoupleAnswer;
+            _context.SaveChanges();
 
         }
 
+                
+        // HELPER for AddCoupleVotesToDb/WhichQuestioToUse 
+        // Gets a Game from the dB, dependent on Id
+        public Question GetQuestion(int questionNumber)
+        {
+            return _context.Questions.Find(questionNumber);
+        }
+
+        // HELPER Method for AddCoupleToDb
+        // Determines CoupleOne and CoupleTwo
         public bool IsCoupleOne()
         {
             String username = Request.Form["username"];
@@ -63,89 +82,20 @@ namespace crowdience.Pages
                 return false;
         }
 
-        public void FillOutCoupleVotes()
-        {
-            TheQuestion = WhichQuestion();
-            String CoupleAnswer = Request.Form["CoupleAnswer"];
-            Console.WriteLine(CoupleAnswer);
-            if (IsCoupleOne())
-            {
-                TheQuestion.CoupleOneVote = CoupleAnswer;
-                _context.SaveChanges();
-                Console.WriteLine("First Which Question Check");
-
-            }
-            else
-            {
-                TheQuestion.CoupleTwoVote = CoupleAnswer;
-                _context.SaveChanges();
-                Console.WriteLine("Second Which Question Check");
-            }
-            // else
-            // {
-            //     Console.WriteLine("Third Which Question Check");
-            // }
-        }
-
-        public Question WhichQuestion()
+        // HELPER Method for AddCoupleToDb
+        // Determines which Question to use.
+        public Question WhichQuestionToUse()
         {
             while (Counter <= 5)
             {
                 Question WhichQuestion = GetQuestion(Counter);
-
                 if (WhichQuestion.CoupleOneVote == "Pending")
-                {
-                    Console.WriteLine("Couple One is Empty");
                     return WhichQuestion;
-
-                }
                 else if (WhichQuestion.CoupleOneVote != "Pending" && WhichQuestion.CoupleTwoVote == "Pending")
-                {
-                    Console.WriteLine("Couple Two is Empty");
                     return WhichQuestion;
-                }
                 Counter++;
             }
-            Console.WriteLine("First Question Returned");
             return GetQuestion(5);
-        }
-
-        // public void WhichQuestion()
-        // {
-        //     TheQuestion = GetQuestion(Counter);
-        //     Console.WriteLine(TheQuestion.QuestionTitle);
-        //     while (Counter <= 5)
-        //     {
-        //         if (TheQuestion.CoupleOneVote == "pending")
-        //         {
-        //             TheQuestion.CoupleOneVote = "Couple One Voted";
-        //             _context.SaveChanges();
-
-        //         }
-        //         else if (TheGame.coupleOneName != "pending" && TheGame.coupleTwoName == "pending")
-        //         {
-        //             TheQuestion.CoupleTwoVote = "Couple Two Voted";
-        //             _context.SaveChanges();
-
-        //         }
-        //         else
-        //         {
-        //             Counter++;
-        //         }
-        //     }
-        // }
-
-        public void SaveVoteToDb()
-        {
-            string coupleName = Request.Form["username"];
-
-            if (TheGame.coupleOneName == "pending")
-                TheGame.coupleOneName = coupleName;
-            else if (TheGame.coupleTwoName == "pending")
-                TheGame.coupleTwoName = coupleName;
-            else
-                Console.WriteLine("Table full, truncate it!");
-            _context.SaveChanges();
         }
     }
 }

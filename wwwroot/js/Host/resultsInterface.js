@@ -93,7 +93,7 @@ function incrementFormCounter(myResponseId) {
 var icon1 = localStorage.getItem("IconId1")
 var icon2 = localStorage.getItem("IconId2")
 Chart.defaults.global.defaultFontColor = 'white';
-var ctx = document.getElementById('bar-chart-horizontal');
+var ctx = $("#bar-chart-horizontal")[0];
 ctx.height = 120;
 var myChart = new Chart(ctx, {
 	type: 'horizontalBar',
