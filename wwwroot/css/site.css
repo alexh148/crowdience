@@ -39,8 +39,8 @@ button.accept-policy {
 html {
   position: relative;
   min-height: 100%;
-  padding-top: 10%;
-  padding-bottom: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 body {
