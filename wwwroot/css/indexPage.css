@@ -1,0 +1,9 @@
+body{
+    background-image:url(pastel.jpg);
+
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #fff1dd;
+}
