@@ -1,0 +1,11 @@
+body{
+    background-image:url(calm.jpg);
+      height: 100%; 
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+}
+
+#questionTitle {
+    font-weight: bold;
+}

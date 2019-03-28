@@ -16,7 +16,7 @@ $(document).ready(function() {
 	var answerTwoVotes = $('#answerTwoFinalCounter').html();
 
 	// Chart
-	Chart.defaults.global.defaultFontColor = 'white';
+	Chart.defaults.global.defaultFontColor = '#6DC3D5';
 	var ctx = $('#bar-chart-horizontal')[0];
 	ctx.height = 120;
 	var myChart = new Chart(ctx, {
@@ -56,6 +56,9 @@ $(document).ready(function() {
 						barPercentage: 1.0,
 						gridLines: {
 							color: '#262626'
+						},
+						ticks: {
+							display: false
 						}
 					}
 				]

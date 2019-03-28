@@ -1,10 +1,32 @@
-#gameOver {
-    text-align: center;
-    font-size: 500%;
+body{
+    /* background-image:url(calm.jpg);
+      height: 100%; 
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover; */
+      background-color: #252525;
+      color: white;
 }
+
+#gameOver {
+    font-size: 1000%;
+    padding: 10px;
+    color: white;
+}
+
+#gameOver, #stat, #question {
+    text-align: center;
+    color: white;
+}
+
   
 #question {
-    text-align: center;
+    font-weight: bold;
+}
+
+#audience, #couple {
+    font-style: italic;
+    color: white;
 }
   
   #hutntai {
@@ -43,20 +65,28 @@ p {
     margin: 0px;
 }
 
+.resultOne, .resultTwo, .resultThree, .resultFour, .resultFive, .thanks {
+    padding: 25px;
+}
+
 .resultOne {
-    border: 3px solid gold;
+    border: 5px solid gold;
 }
 .resultTwo {
-    border: 3px solid blue;
+    border: 5px solid blue;
 }
 .resultThree {
-    border: 3px solid green;
+    border: 5px solid red;
 }
 .resultFour {
-    border: 3px solid red;
+    border: 5px solid purple;
 }
 .resultFive {
-    border: 3px solid purple;
+    border: 5px solid orange;
+}
+
+.thanks {
+    border: 5px solid green;
 }
 
 iframe {
@@ -75,6 +105,18 @@ iframe {
     text-align: center;
 }
 
-#gameOverPageMessageOne {
+#thanksforplaying {
     text-decoration: underline;
+    text-align: center;
+    color: white;
+}
+
+#appalause {
+    min-width: 100%;
+    height: 45vh;
+    overflow: hidden;
+}
+
+#newGame {
+    margin: 0px;
 }

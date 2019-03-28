@@ -108,7 +108,7 @@ function incrementFormCounter(myResponseId) {
 // Chart Builder, referenced by myChart.
 var icon1 = sessionStorage.getItem('IconId1');
 var icon2 = sessionStorage.getItem('IconId2');
-Chart.defaults.global.defaultFontColor = 'white';
+Chart.defaults.global.defaultFontColor = '#6DC3D5';
 var ctx = $('#bar-chart-horizontal')[0];
 ctx.height = 120;
 var myChart = new Chart(ctx, {
@@ -148,6 +148,9 @@ var myChart = new Chart(ctx, {
 					barPercentage: 1.0,
 					gridLines: {
 						color: '#262626'
+					},
+					ticks: {
+						display: false
 					}
 				}
 			]
