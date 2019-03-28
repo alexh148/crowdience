@@ -47,7 +47,7 @@ html {
 
 #startBdiv {
   text-align: center;
-  padding-top: 5%;
+  padding-top: 7.5%;
 }
 
 
@@ -63,4 +63,3 @@ html {
 .startButton:hover {
   opacity: .3;
 }
-

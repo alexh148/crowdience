@@ -7,19 +7,14 @@
       <div class="row">
         <div class="col-md-9">
          <h1 id="questionTitle">
-               @ViewData["question"]:
+               @ViewData["question"]
           </h1>
         </div>
-
         <div class="col-md-3">
          <form method="post">
           <div id="buttonDiv">
-            
-
-
         <button style="display: none;" type="submit" id="addDiv" class = "btn btn-success"> View Results!</button>
           </div>
-       
         </div>
       </div>
       <div class="row">
@@ -28,7 +23,6 @@
         </div>
         <div class="col-md-3">
           <p id="answerOneCounterP"><span id="answerOneCounter">@ViewData["answerOneCounter"]</span></p>
-
         </div>
         <div class="col-md-3">
           <p id="answerTwo"></p>
@@ -59,3 +53,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script src="~/js/Host/resultsInterface.js"></script>
 <link rel="stylesheet" type="text/css" href="~/css/icons.css">
+<link rel="stylesheet" type="text/css" href="~/css/hostResults.css">

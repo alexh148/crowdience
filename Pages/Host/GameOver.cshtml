@@ -3,10 +3,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <h3 id="gameOver">
-        GameOver :(
-        <p id="hutntai">Have you tried not thinking about it?</p>
-      </h3>
+      <h3 id="gameOver">GameOver :(</h3>
+      <h3 id="stat">Stat Time!</h3>
       <div class="row">
         <div class="col-md-4 resultOne">
           <h3 id="question">Q1: @ViewData["q1Title"]</h3>
@@ -108,10 +106,10 @@
             <label class="votecard-cc @ViewData["q4c2vote"]" for="@ViewData["q4c2vote"]" />
           </p>
         </div>
-        <div class="col-md-4">
-          <h3 id="question">Thanks For Playing!</h3>
-          <iframe src="https://giphy.com/embed/2xIOiAPXonois" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-          <button id="newGame" class="btn btn-success">New Game</button>
+        <div class="col-md-4 thanks">
+          <h3 id="thanksforplaying">Thanks For Playing!</h3>
+          <iframe id="appalause" src="https://giphy.com/embed/2xIOiAPXonois" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <button id="newGame" class="btn btn-success">New Game?</button>
         </div>
         <div class="col-md-4 resultFive">
           <h3 id="question">Q5: @ViewData["q5Title"]</h3>
