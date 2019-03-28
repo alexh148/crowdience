@@ -83,4 +83,6 @@ span.cc{ color:#6d84b4 }
 
 #vote{
   display: block;
+  position: absolute;
+  right: 45%;
 }
