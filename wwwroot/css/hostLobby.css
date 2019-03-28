@@ -1,12 +1,35 @@
 #title {
-    font-size: 150%;
+    font-size: 450%;
+    font-weight: bold;
+}
+
+#couple, #users, #navigate {
+    text-decoration: underline;
+}
+
+#start {
+    font-size: 200%;
+    width: 100%;
+    border-radius: 100px;
+}
+
+#start, #address, #couple, #users, #title, #navigate {
     text-align: center;
 }
 
-#couple {
-    text-decoration: underline;
+#yoohoo {
+    width: 100%;
+    border-radius: 50%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
 }
 
-#users {
-    text-decoration: underline;
+#address {
+    font-size: 350%;
+    padding: 2.5%;
+}
+
+#joinedUsers {
+    max-height: 35vh;
+    overflow: hidden;
 }
