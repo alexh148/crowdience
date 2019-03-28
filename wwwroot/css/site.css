@@ -39,8 +39,8 @@ button.accept-policy {
 html {
   position: relative;
   min-height: 100%;
-  padding-top: 10%;
-  padding-bottom: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 body {
@@ -55,41 +55,4 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
-}
-
-.startButton {
-  width: 280px;
-  height: 250px;
-  font-size: 26pt;
-  border-radius: 50%;
-  background-repeat: no-repeat;
-  color: black;
-}
-
-.startButton:hover {
-  opacity: .3;
-}
-
-#startAsHost {
-  background-image: url(https://media1.tenor.com/images/72507f7b18cfd64572bf04dd059728aa/tenor.gif?itemid=5875295);
-  max-height: 90%;
-  color: white;
-}
-
-#startAsCouple {
-  background-image: url(https://media.tenor.com/images/003d160afe8049df1d4e6c62f2102c35/tenor.gif);
-  max-height: 90%;
-  background-color: white;
-  color: black;
-}
-
-#startAsPlayer {
-  background-image: url(https://media1.tenor.com/images/5fcc00b13f626d6e8ada8f614f8ddf3f/tenor.gif?itemid=9247114);
-  max-height: 90%;
-  background-color: black;
-  color: #ff9e5b;
-}
-
-#startBdiv {
-  text-align: center;
 }

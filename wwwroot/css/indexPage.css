@@ -1,9 +1,65 @@
 body{
-    background-image:url(pastel.jpg);
+    background-image:url(https://cdn.shopify.com/s/files/1/0662/8383/products/grimms-12-friends-pastel-new-2018-_1187_1360x1360.jpg?v=1521058533);
 
   height: 100%; 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #fff1dd;
+}
+
+h1{
+margin-bottom: 0.5rem;
+font-family: "Montserrat", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+font-weight: 500;
+line-height: 1.2;
+color: #6CC3D5;
+}
+
+html {
+  position: relative;
+  padding-top: 5%;
+  padding-bottom: 10%;
+}
+
+#startAsHost {
+  padding-top: 5%;
+  background-image: url(https://media1.tenor.com/images/72507f7b18cfd64572bf04dd059728aa/tenor.gif?itemid=5875295);
+  max-height: 90%;
+  color: white;
+}
+
+#startAsCouple {
+  padding-top: 5%;
+  background-image: url(https://media.tenor.com/images/003d160afe8049df1d4e6c62f2102c35/tenor.gif);
+  max-height: 90%;
+  background-color: white;
+  color: black;
+}
+
+#startAsPlayer {
+  padding-top: 5%;
+  background-image: url(https://media1.tenor.com/images/5fcc00b13f626d6e8ada8f614f8ddf3f/tenor.gif?itemid=9247114);
+  max-height: 90%;
+  background-color: black;
+  color: #ff9e5b;
+}
+
+#startBdiv {
+  text-align: center;
+  padding-top: 7.5%;
+}
+
+
+.startButton {
+  width: 280px;
+  height: 250px;
+  font-size: 26pt;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  color: black;
+}
+
+.startButton:hover {
+  opacity: .3;
 }

@@ -69,3 +69,20 @@ p{margin-bottom:.3em;}
 .cc-selector-2 input{ margin: 5px 0 0 12px; }
 .cc-selector-2 label{ margin-left: 7px; }
 span.cc{ color:#6d84b4 }
+
+
+/* css for displaying in player votes */
+
+#answerOne{
+  display:inline-block;
+}
+
+#answerTwo{
+  display:inline-block;
+}
+
+#vote{
+  display: block;
+  position: absolute;
+  right: 45%;
+}

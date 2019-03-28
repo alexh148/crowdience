@@ -1,10 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Bangers|Carter+One|Dancing+Script|Indie+Flower|Over+the+Rainbow");
 
-/* body {
-  font-family: "indie";
-  color: #3d1b08;
-  background-color: #e7e1c3;
-} */
 
 #questionTitle {
   font-size: 350%;
@@ -75,6 +70,7 @@
   width: 100%;
   text-align: center;
   pointer-events: none;
+  display: inline;
 }
 
 #waitingRoom, #lobby {

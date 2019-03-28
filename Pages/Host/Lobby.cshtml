@@ -1,26 +1,51 @@
 @page
 @model HostLobbyModel
-<div>
-    <div id="lobbyInfo">
-    <h1>@ViewData["LobbyTitle"]:</h1>
-    <h4>Please Connect to the following address on your mobile device:</h4>
-    <h4>https://localhost:5001/Player/Lobby</h4>
-    <p>When Ready, click Start:</p>
-    <form method="post">
-    <button class="btn-primary" id="start">Start!</button>
-    </form>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="title">Game is Ready!!!</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Please connect to the following address:</h4>
+          <h1 id="address">https://crowdience.azurewebsites.net</h1>
+          <h4 id="navigate">Then navigate to Player or Couple!</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <h3 id="couple">Couples Joining:</h3>
+          <ul id="joinedCouple" />
+        </div>
+        <div class="col-md-6">
+          <img
+            id="yoohoo"
+            src="https://media1.tenor.com/images/6451d8d3acffa10840464d31009e2a5d/tenor.gif?itemid=4684572"
+          />
+        </div>
+        <div class="col-md-3" id="userContainer">
+          <h3 id="users">Players Joining:</h3>
+          <ol id="joinedUsers">
+             </ol>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form method="post">
+            <button class="btn-primary" id="start">
+              Start Game!!
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-    <div id="couple">Couple joined:
-    <ul id="joinedCouple"></ul>
-    </div>
-    <div id="users">Players that joined:
-    <ul id="joinedUsers"></ul>
-    </div>
-    <div id="yoohoo">
-    <img src="https://media1.tenor.com/images/6451d8d3acffa10840464d31009e2a5d/tenor.gif?itemid=4684572"/>
-    </div>
+  </div>
 </div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/Host/lobbyInterface.js"></script>
+<link rel="stylesheet" type="text/css" href="~/css/hostLobby.css">

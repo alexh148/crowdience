@@ -1,0 +1,50 @@
+body{
+    /* background-image:url(calm.jpg);
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  background-color: #fff1dd;
+}
+
+#startBdiv {
+  margin-top: 7.5%;
+}
+
+#title {
+    font-size: 450%;
+    font-weight: bold;
+}
+
+#couple, #users, #navigate {
+    text-decoration: underline;
+}
+
+#start {
+    font-size: 200%;
+    width: 100%;
+    border-radius: 100px;
+}
+
+#start, #address, #couple, #users, #title, #navigate {
+    text-align: center;
+}
+
+#yoohoo {
+    width: 100%;
+    border-radius: 50%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+#address {
+    font-size: 350%;
+    padding: 2.5%;
+    font-weight: bold;
+
+}
+
+#joinedUsers {
+    max-height: 35vh;
+    overflow: hidden;
+}
